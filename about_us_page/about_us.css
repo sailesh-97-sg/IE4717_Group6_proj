@@ -6,7 +6,7 @@
     padding: 2px 20px;
     border-radius: 20px;
     align-content: start;
-    max-width: 850px;
+    min-width: 900px;
 }
 
 #introduction {
