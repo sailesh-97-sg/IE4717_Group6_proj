@@ -7,11 +7,9 @@
     border-radius: 20px;
     min-width: 900px;
 }
-
 body {
     margin: 0px;
 }
-
 .contactdetails {
     padding: 10px 10px;
     border-bottom: 2px solid black;
@@ -21,11 +19,18 @@ body {
     column-gap: 30px;
     row-gap: 0px;
 }
-
-input {
+.nameandemail div input {
     border-radius: 20px;
+    height: 20px;
+    margin-top: 20px;
+    margin-right: 20px;  
 }
-
+.feedbacksubject input {
+    border-radius: 20px;
+    height: 20px;
+    margin-top: 20px;
+    margin-right: 20px;   
+}
 .message {
     padding: 10px 10px;
     border-bottom: 2px solid black;
@@ -34,7 +39,6 @@ input {
     column-gap: 30px;
     row-gap: 0px;
 }
-
 #submitfeedback {
     border-radius: 50px;
     background-color: black;
@@ -43,28 +47,15 @@ input {
     height: 20px;
     margin-top: 20px;
 }
-
-
-
-input {
-    height: 20px;
-    margin-top: 20px;
-    margin-right: 20px;
-}
-
 form {
     grid-column: 3/7;
 }
-
 .feedbacksubmit {
     margin-left: 70px;
 }
-
 .feedbackname {
     margin-bottom: 10px;
 }
-
-
 .messageinput {
     background-color: white;
     height: 200px;
@@ -74,23 +65,15 @@ form {
     justify-content: space-around;
     flex-direction: row;
 }
-
 .feedbacksubject {
     align-self: cet;
-
-
 }
-
-
 .message {
     padding: 30px 10px;
 }
-
-
 .career {
     padding: 30px 30px;
 }
-
 #submitform {
     border-radius: 20px;
     width: 100px;
