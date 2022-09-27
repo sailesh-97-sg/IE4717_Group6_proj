@@ -6,78 +6,118 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="products.css">
+    <link rel="stylesheet" href="../general_style.css">
     <title>Document</title>
 </head>
 
 <body>
-    <div class="products_body">
-
-        <div class="filtersandproducts">
-
-            <div class="filters">
-
-                <p><strong>Products:</strong></p>
-                <p>Filter by:</p>
-
-                <div class="pricefilter">
-                    <input type="radio" name="pricefilter" id="lowtohigh" class="pricefiltering" checked>
-                    <label for="lowtohigh">Low to High</label>
-                    <br>
-                    <input type="radio" name="pricefilter" id="hightolow" class="pricefiltering">
-                    <label for="hightolow">High to Low</label>
+    <div id="wrapper">
+        <div id="header">
+            <header>
+                <div id="logo">
+                    <a href="home01.html"><img src="../assets/facebook.png" alt="Logo" height="55px" width="55px"></a>
                 </div>
-
-                <div class="genderfilter">
-                    <p><strong>Gender:</strong></p>
-                    <input type="radio" name="gender" id="male" checked>
-                    <label for="male">Male</label>
-                    <br>
-                    <input type="radio" name="gender" id="female">
-                    <label for="female">Female</label>
+                <div id="tabs">
+                    <a href="../home01.html">Home</a>
+                    <a href="products.html">Products</a>
+                    <a href="../about_us_page/about_us.html">About Us</a>
+                    <a href="../contact_page/contact.html">Contact</a>
                 </div>
-
-                <div class="clothingtypefilter">
-                    <p><strong>Clothing Type:</strong></p>
-                    <input type="radio" name="clothingtype" id="dryfit" checked>
-                    <label for="dryfit">Dry-Fit</label>
-                    <br>
-                    <input type="radio" name="clothingtype" id="casual">
-                    <label for="casual">Casual</label>
-                    <br>
-                    <input type="radio" name="clothingtype" id="shirts">
-                    <label for="shirts">Shirts</label>
-                    <br>
-                    <input type="radio" name="clothingtype" id="tshirts">
-                    <label for="tshirts">T-Shirts</label>
+                <div id="search_bar">
+                    <input type="text" placeholder="Search...">
+                    <input type="image" src="../assets/search.png" name="search" width="35px" height="35px" alt="submit">
                 </div>
-
-                <div class="clothingbrandsfilter">
-                    <p><strong>Clothing Brands:</strong></p>
-                    <input type="radio" name="clothingbrand" id="adidas" checked>
-                    <label for="dryfit">Adidas</label>
-                    <br>
-                    <input type="radio" name="clothingbrand" id="puma">
-                    <label for="casual">Puma</label>
-                    <br>
-                    <input type="radio" name="clothingbrand" id="zara">
-                    <label for="shirts">Zara</label>
-                    <br>
-                    <input type="radio" name="clothingbrand" id="h&m">
-                    <label for="tshirts">H&M</label>
+            </header>
+        </div><div class="products_body">
+            <div class="filtersandproducts">
+                <div class="filters">
+                    <p><strong>Products:</strong></p>
+                    <p>Filter by:</p>
+                    <div class="pricefilter">
+                        <input type="radio" name="pricefilter" id="lowtohigh" class="pricefiltering" checked>
+                        <label for="lowtohigh">Low to High</label>
+                        <br>
+                        <input type="radio" name="pricefilter" id="hightolow" class="pricefiltering">
+                        <label for="hightolow">High to Low</label>
+                    </div>
+                    <div class="genderfilter">
+                        <p><strong>Gender:</strong></p>
+                        <input type="radio" name="gender" id="male" checked>
+                        <label for="male">Male</label>
+                        <br>
+                        <input type="radio" name="gender" id="female">
+                        <label for="female">Female</label>
+                    </div>
+                    <div class="clothingtypefilter">
+                        <p><strong>Clothing Type:</strong></p>
+                        <input type="radio" name="clothingtype" id="dryfit" checked>
+                        <label for="dryfit">Dry-Fit</label>
+                        <br>
+                        <input type="radio" name="clothingtype" id="casual">
+                        <label for="casual">Casual</label>
+                        <br>
+                        <input type="radio" name="clothingtype" id="shirts">
+                        <label for="shirts">Shirts</label>
+                        <br>
+                        <input type="radio" name="clothingtype" id="tshirts">
+                        <label for="tshirts">T-Shirts</label>
+                    </div>
+                    <div class="clothingbrandsfilter">
+                        <p><strong>Clothing Brands:</strong></p>
+                        <input type="radio" name="clothingbrand" id="adidas" checked>
+                        <label for="dryfit">Adidas</label>
+                        <br>
+                        <input type="radio" name="clothingbrand" id="puma">
+                        <label for="casual">Puma</label>
+                        <br>
+                        <input type="radio" name="clothingbrand" id="zara">
+                        <label for="shirts">Zara</label>
+                        <br>
+                        <input type="radio" name="clothingbrand" id="h&m">
+                        <label for="tshirts">H&M</label>
+                    </div>
                 </div>
-
-
-            </div>
-
-            <div class="products">
-                <p>asdds</p>
-                <p>sads</p>
-                <p>asdds</p>
-
+                <div class="products">
+                    <p>asdds</p>
+                    <p>sads</p>
+                    <p>asdds</p>
+                </div>
             </div>
         </div>
+        <div id="footer">
+            <footer>
+                <div id="contactdetails">
+                    <h3><strong>Contact:</strong></h3>
+                    <p>Address: Blk 17, Kaki Bukit Avenue 3 <br>
+                        162774<br>
+                        KB Commercial Estate<br>
+                        #04-106<br>
+                        <strong>Email:</strong> contact@fashionstore4717.com<br>
+                        <strong>Telephone:</strong> 67241328
+                    </p>
+                </div>
+                <div id="customerservice">
+                    <h3><strong>Customer Service:</strong></h3>
+                    <p>
+                        Contact Us<br>
+                        Delivery<br>
+                        Returns<br>
+                        FAQ<br>
+                        Order Tracking<br>
+                        Fashion Index
+                    </p>
+                </div>
+                <div id="socialmedia" >
+                    <h3><strong>Follow us on Social Media!</strong></h3>
+                    <div id="socialmediaimages">
+                        <img src="../assets/facebook.png" alt="" height="55" width="55">
+                        <img src="../assets/insta.png" alt="" height="55" width="55" style="background-color: white;">
+                        <img src="../assets/twitter.png" alt="" height="55" width="55">
+                        <img src="../assets/linkedin.png" alt="" height="55" width="55">
+                    </div>
+                </div>
+            </footer>
+        </div>
     </div>
-
 </body>
-
 </html>
