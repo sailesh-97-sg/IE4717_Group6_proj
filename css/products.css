@@ -26,9 +26,28 @@ body {
 
 }
 
+.productitems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.productitems img {
+    border-radius: 20px;
+}
+
+.productitems p:nth-of-type(2) {
+    margin-top: -10px;
+}
+
+
+
 .products {
     flex: 6;
     margin-left: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 /* https://markheath.net/post/customize-radio-button-css */
