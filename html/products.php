@@ -11,6 +11,17 @@
 </head>
 
 <body>
+    <?php 
+    @ $db = new mysqli('localhost', 'root', '', 'f38_dg06');
+    if (mysqli_connect_errno()) {
+        echo 'Error: Could not connect to database. Please try again later.';
+        exit;
+    }
+    $query = "select * from products";
+    $result = $db->query($query);
+    $num_results = $result->num_rows;   
+    
+    ?>
     <div id="wrapper">
         <div id="header">
             <header>
@@ -80,51 +91,62 @@
                         <p>asdasd</p>
                         <p>asdas</p>
                     </div> -->
-                    <div class="productitems">
-                        <img src="/assets/clothe1.jpg" alt="" height="150" width="130">
+                    <?php 
+                    for($i=0;$i<$num_results;$i++) {
+                        $row = $result->fetch_assoc();
+                   
+                        echo "<div class = \"productitems\">";
+                        echo "<img src=\"../assets/clothe1.jpg\" alt=\"\" height=\"150\" width=\"130\">";
+                        echo "<p><strong>".$row['productname']."</strong></p>";
+                        echo "<p><em>$".$row['productprice']."</em></p>";
+                        echo "</div>";
+                    }
+                    ?>
+                    <!-- <div class="productitems">
+                        <img src="../assets/clothe1.jpg" alt="" height="150" width="130">
                         <p><strong>Clothing 1</strong></p>
                         <p><em>$12.99</em></p>
                     </div>
                     <div class="productitems">
-                        <img src="/assets/clothe2.jpg" alt="" height="150" width="130">
+                        <img src="../assets/clothe2.jpg" alt="" height="150" width="130">
                         <p><strong>Clothing 2</strong></p>
                         <p><em>$15.99</em></p>
                     </div>
                     <div class="productitems">
-                        <img src="/assets/clothe2.jpg" alt="" height="150" width="130">
+                        <img src="../assets/clothe2.jpg" alt="" height="150" width="130">
                         <p><strong>Clothing 2</strong></p>
                         <p><em>$15.99</em></p>
                     </div>
                     <div class="productitems">
-                        <img src="/assets/clothe2.jpg" alt="" height="150" width="130">
+                        <img src="../assets/clothe2.jpg" alt="" height="150" width="130">
                         <p><strong>Clothing 2</strong></p>
                         <p><em>$15.99</em></p>
                     </div>
                     <div class="productitems">
-                        <img src="/assets/clothe2.jpg" alt="" height="150" width="130">
+                        <img src="../assets/clothe2.jpg" alt="" height="150" width="130">
                         <p><strong>Clothing 2</strong></p>
                         <p><em>$15.99</em></p>
                     </div>
                     <div class="productitems">
-                        <img src="/assets/clothe2.jpg" alt="" height="150" width="130">
+                        <img src="../assets/clothe2.jpg" alt="" height="150" width="130">
                         <p><strong>Clothing 2</strong></p>
                         <p><em>$15.99</em></p>
                     </div>
                     <div class="productitems">
-                        <img src="/assets/clothe2.jpg" alt="" height="150" width="130">
+                        <img src="../assets/clothe2.jpg" alt="" height="150" width="130">
                         <p><strong>Clothing 2</strong></p>
                         <p><em>$15.99</em></p>
                     </div>
                     <div class="productitems">
-                        <img src="/assets/clothe2.jpg" alt="" height="150" width="130">
+                        <img src="../assets/clothe2.jpg" alt="" height="150" width="130">
                         <p><strong>Clothing 2</strong></p>
                         <p><em>$15.99</em></p>
                     </div>
                     <div class="productitems">
-                        <img src="/assets/clothe2.jpg" alt="" height="150" width="130">
+                        <img src="../assets/clothe2.jpg" alt="" height="150" width="130">
                         <p><strong>Clothing 2</strong></p>
                         <p><em>$15.99</em></p>
-                    </div>
+                    </div> -->
 
 
 
