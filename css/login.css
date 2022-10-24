@@ -1,14 +1,20 @@
-body {
-    background-color: white;
-    max-width: max-content;
+.login_body {
     margin: auto;
+    background-color: rgb(195, 195, 195);
+    width: 80%;
+    margin-top: 0px;
+    padding: 2px 20px;
+    border-radius: 20px;
+    align-content: start;
+    min-width: 900px;
 }
 
-img {
-    margin-top: 20px;
+body {margin: 0px;}
+
+img {margin-top: 20px;
 }
 
-input {
+.form_input {
     margin-left: 50px;
     border-radius: 20px;
     width: 300px;
@@ -16,7 +22,6 @@ input {
     height: 30px;
     border-width: 3px;
     background-color: rgb(243, 243, 243);
-
 }
 
 #loginsubmit {

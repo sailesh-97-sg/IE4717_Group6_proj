@@ -1,8 +1,7 @@
 body {
     margin: 0px;
 }
-
-.products_body {
+.profile_body {
     margin: auto;
     background-color: rgb(195, 195, 195);
     width: 90%;
@@ -10,13 +9,10 @@ body {
     padding: 20px 20px;
     border-radius: 20px;
     min-width: 1000px;
-
 }
-
 .accountandorders {
     padding: 40px 40px;
 }
-
 .accountdetails {
     background-color: white;
     border-radius: 20px;
@@ -25,18 +21,15 @@ body {
     display: flex;
     flex-direction: column;
 }
-
 .firstname {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
-
 .firstname p:nth-of-type(2) {
     margin-left: 3px;
 }
-
 .firstname input {
     height: 24px;
     width: 60px;
@@ -45,18 +38,14 @@ body {
     color: white;
 
 }
-
 .lastname {
     display: flex;
     flex-direction: row;
     margin-top: -20px;
 }
-
 .lastname p:nth-of-type(2) {
     margin-left: 3px;
 }
-
-
 .email {
     display: flex;
     flex-direction: row;

@@ -43,6 +43,14 @@ header{
     padding: 10px 15px;
     background-color: blue;
 }
+#link_btn:link, #link_btn:visited{
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
 #tabs{
     flex: 1 0 50px;
 }
