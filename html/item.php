@@ -9,6 +9,26 @@
     <link rel="stylesheet" href="../css/general_style.css">
     <title>Items Page</title>
 </head>
+<?php 
+$productname = $_POST['productname'];
+$productprice = $_POST['productprice'];
+
+// $productprice = addslashes($productprice);
+// $productname = addslashes($productname);
+@ $db = new mysqli('localhost', 'root', '', 'f38_dg06');
+if (mysqli_connect_errno()) {
+    echo 'Error: Could not connect to database. Please try again later.';
+    exit;
+}
+
+$query = "select * from products where productname=\"".$productname."\" and productprice = \"".$productprice."\"";
+
+
+$result = $db->query($query);
+
+$num_results = $result->num_rows;
+$row = $result->fetch_assoc();
+?>
 
 <body>
     <div id="wrapper">
@@ -29,11 +49,11 @@
             <div class="products_body">
                 <div class="itemspage">
                     <div class="productimage">
-                        <img src="/assets/clothe1.jpg" alt="" height="300px" width="200px">
-                        <p><strong>Clothing 1</strong></p>
+                        <img src="../assets/clothe1.jpg" alt="" height="300px" width="200px">
+                        <p><strong><?php echo "".$row['productname'].""?></strong></p>
                     </div>
                     <div class="productdescription">
-                        <p><strong>Clothing 1</strong></p>
+                        <p><strong><?php ?></strong></p>
                         <p>Made in Germany by the famous fashion designer Alberto Robin, this was released in 2002, as
                             part
                             of the Alberto Limited Edition. Aksdjnjasndkjasndkjanskdnaksjndkasndkasnkdanskdnaksjnkd</p>

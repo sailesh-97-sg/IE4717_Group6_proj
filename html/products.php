@@ -17,7 +17,23 @@
         echo 'Error: Could not connect to database. Please try again later.';
         exit;
     }
+    // $producttag = $_POST['clothingtype'];
+    // if ($producttag = "dryfit") {
+    //     $query = "select * from products where producttag = 'Dry-Fit'";
+    // }
+    //  if ($producttag = "casual") {
+    //     $query = "select * from products where producttag = 'Casual'";
+    // }
+    // else if ($producttag = "shirts") {
+    //     $query = "select * from products where producttag = 'T-Shirts'";
+    // }
+    // if($producttag = "all") {
+    //     $query = "select * from products";
+    // }
     $query = "select * from products";
+
+    // $query = "select * from products";
+   
     $result = $db->query($query);
     $num_results = $result->num_rows;   
     
@@ -39,51 +55,57 @@
         <div class="products_body">
             <div class="filtersandproducts">
                 <div class="filters">
-                    <p><strong>Products:</strong></p>
-                    <p>Filter by:</p>
-                    <div class="pricefilter">
-                        <input type="radio" name="pricefilter" id="lowtohigh" class="pricefiltering" checked>
-                        <label for="lowtohigh">Low to High</label>
-                        <br>
-                        <input type="radio" name="pricefilter" id="hightolow" class="pricefiltering">
-                        <label for="hightolow">High to Low</label>
-                    </div>
-                    <div class="genderfilter">
-                        <p><strong>Gender:</strong></p>
-                        <input type="radio" name="gender" id="male" checked>
-                        <label for="male">Male</label>
-                        <br>
-                        <input type="radio" name="gender" id="female">
-                        <label for="female">Female</label>
-                    </div>
-                    <div class="clothingtypefilter">
-                        <p><strong>Clothing Type:</strong></p>
-                        <input type="radio" name="clothingtype" id="dryfit" checked>
-                        <label for="dryfit">Dry-Fit</label>
-                        <br>
-                        <input type="radio" name="clothingtype" id="casual">
-                        <label for="casual">Casual</label>
-                        <br>
-                        <input type="radio" name="clothingtype" id="shirts">
-                        <label for="shirts">Shirts</label>
-                        <br>
-                        <input type="radio" name="clothingtype" id="tshirts">
-                        <label for="tshirts">T-Shirts</label>
-                    </div>
-                    <div class="clothingbrandsfilter">
-                        <p><strong>Clothing Brands:</strong></p>
-                        <input type="radio" name="clothingbrand" id="adidas" checked>
-                        <label for="dryfit">Adidas</label>
-                        <br>
-                        <input type="radio" name="clothingbrand" id="puma">
-                        <label for="casual">Puma</label>
-                        <br>
-                        <input type="radio" name="clothingbrand" id="zara">
-                        <label for="shirts">Zara</label>
-                        <br>
-                        <input type="radio" name="clothingbrand" id="h&m">
-                        <label for="tshirts">H&M</label>
-                    </div>
+                    <form action="products.php" method="post">
+                        <p><strong>Products:</strong></p>
+                        <p>Filter by:</p>
+                        <div class="pricefilter">
+                            <input type="radio" name="pricefilter" id="lowtohigh" class="pricefiltering" checked>
+                            <label for="lowtohigh">Low to High</label>
+                            <br>
+                            <input type="radio" name="pricefilter" id="hightolow" class="pricefiltering">
+                            <label for="hightolow">High to Low</label>
+                        </div>
+                        <div class="genderfilter">
+                            <p><strong>Gender:</strong></p>
+                            <input type="radio" name="gender" id="male" value="male" checked>
+                            <label for="male">Male</label>
+                            <br>
+                            <input type="radio" name="gender" id="female" value="female">
+                            <label for="female">Female</label>
+                        </div>
+                        <div class="clothingtypefilter">
+                            <p><strong>Clothing Type:</strong></p>
+                            <input type="radio" name="clothingtype" id="all" value="all" checked>
+                            <label for="dryfit">All</label>
+                            <br>
+                            <input type="radio" name="clothingtype" id="dryfit" value="dryfit">
+                            <label for="dryfit">Dry-Fit</label>
+                            <br>
+                            <input type="radio" name="clothingtype" id="casual" value="casual">
+                            <label for="casual">Casual</label>
+                            <br>
+                            <input type="radio" name="clothingtype" id="shirts" value="shirts">
+                            <label for="shirts">Shirts</label>
+                            <br>
+                            <input type="radio" name="clothingtype" id="tshirts" value="tshirts">
+                            <label for="tshirts">T-Shirts</label>
+                        </div>
+                        <div class="clothingbrandsfilter">
+                            <p><strong>Clothing Brands:</strong></p>
+                            <input type="radio" name="clothingbrand" id="adidas" value="adidas">
+                            <label for="dryfit">Adidas</label>
+                            <br>
+                            <input type="radio" name="clothingbrand" id="puma" value="puma">
+                            <label for="casual">Puma</label>
+                            <br>
+                            <input type="radio" name="clothingbrand" id="zara" value="zara">
+                            <label for="shirts">Zara</label>
+                            <br>
+                            <input type="radio" name="clothingbrand" id="h&m" value="h&m">
+                            <label for="tshirts">H&M</label>
+                        </div>
+                        <input type="submit" value="Apply" id="submitbutton">
+                    </form>
                 </div>
                 <div class="products">
                     <!-- <div class="productitem">
@@ -96,10 +118,15 @@
                         $row = $result->fetch_assoc();
                    
                         echo "<div class = \"productitems\">";
-                        echo "<img src=\"../assets/clothe1.jpg\" alt=\"\" height=\"150\" width=\"130\">";
+                        echo "<form action = \"item.php\" method=\"POST\">";
+                        echo "<input type=\"image\"  src=\"../assets/clothe1.jpg\" alt=\"\" height=\"150\" width=\"130\">";
                         echo "<p><strong>".$row['productname']."</strong></p>";
+                        echo "<input type=\"hidden\" name=\"productname\" value = \"".$row['productname']."\">";
+                        echo "<input type=\"hidden\" name=\"productprice\" value = \"".$row['productprice']."\">";
                         echo "<p><em>$".$row['productprice']."</em></p>";
+                        echo "</form>";
                         echo "</div>";
+                 
                     }
                     ?>
                     <!-- <div class="productitems">
