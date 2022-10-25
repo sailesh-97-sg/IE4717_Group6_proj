@@ -10,6 +10,19 @@
     <title>Items Page</title>
 </head>
 <?php 
+session_start();
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
+// $_COOKIE['currentcartitem'] = array();
+// if ($_COOKIE['currentcartitem']) {
+//     $_SESSION['cart'][][0] = $_COOKIE['currentcartitem'][0];
+//     $_SESSION['cart'][][1] = $_COOKIE['currentcartitem'][1];
+//     $_SESSION['cart'][][2] = $_COOKIE['currentcartitem'][2];
+//     unset($_COOKIE['currentcartitem']);
+// }
+
+
 $productname = $_POST['productname'];
 $productprice = $_POST['productprice'];
 
@@ -45,12 +58,15 @@ $row = $result->fetch_assoc();
                 </div>
             </header>
         </div>
-        <form action="">
+        <form action="products.php" method="post">
             <div class="products_body">
                 <div class="itemspage">
                     <div class="productimage">
                         <img src="../assets/clothe1.jpg" alt="" height="300px" width="200px">
                         <p><strong><?php echo "".$row['productname'].""?></strong></p>
+                        <p><strong><?php echo "$".$row['productprice'].""?></strong></p>
+
+
                     </div>
                     <div class="productdescription">
                         <p><strong><?php ?></strong></p>
@@ -59,18 +75,19 @@ $row = $result->fetch_assoc();
                             of the Alberto Limited Edition. Aksdjnjasndkjasndkjanskdnaksjndkasndkasnkdanskdnaksjnkd</p>
                         <div class="productsizes">
                             <p>Sizes: </p>
-                            <input type="radio" name="size" id="small">
+                            <input type="radio" name="itemsize" value="small" id="small" required>
                             <label for="small">Small</label>
-                            <input type="radio" name="size" id="medium">
+                            <input type="radio" name="itemsize" value="medium" id="medium">
                             <label for="medium">Medium</label>
-                            <input type="radio" name="size" id="large">
+                            <input type="radio" name="itemsize" value="large" id="large">
                             <label for="large">Large</label>
-                            <input type="radio" name="size" id="extralarge">
+                            <input type="radio" name="itemsize" value="extralarge" id="extralarge">
                             <label for="extralarge">Extra Large</label>
                         </div>
+
                         <div class="coloroption">
                             <p>Color Option:</p>
-                            <select name="" id="color">
+                            <select name="itemcolor" id="color" required>
                                 <option value="red" style="background-color: red; color: white;">Red</option>
                                 <option value="blue" style="background-color: blue; color: white">Blue</option>
                                 <option value="green" style="background-color: green; color: white">Green</option>
@@ -82,10 +99,11 @@ $row = $result->fetch_assoc();
                     <div class="productaddtocart">
                         <div class="quantity">
                             <p>Qty: </p>
-                            <input type="text">
+                            <input type="text" name="itemquantity" required>
                         </div>
                         <div class="addtocart">
-                            <input type="submit" name="submit" id="" value="Add to Cart">
+                            <input type="submit" name="submit" id="submit" value="Add to Cart">
+
                         </div>
                         <div class="questionsredirect">
                             <p><strong>Have a question?</strong></p>
@@ -96,6 +114,10 @@ $row = $result->fetch_assoc();
                 </div>
 
             </div>
+            <?php 
+            echo "<input type=\"hidden\" name=\"itemname\" value=\"".$row['productname']."\">";
+            echo "<input type=\"hidden\" name=\"itemprice\" value=\"".$row['productprice']."\">";
+            ?>
         </form>
 
     </div>

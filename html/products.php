@@ -12,6 +12,32 @@
 
 <body>
     <?php 
+    session_start();
+
+    
+    if (isset($_POST['itemname']) and isset($_POST['itemprice']) and isset($_POST['itemcolor']) and isset($_POST['itemquantity']) and isset($_POST['itemsize'])) {
+        $itemproductname = $_POST['itemname'];
+        $itemproductprice = $_POST['itemprice'];
+        $itemproductcolor = $_POST['itemcolor'];
+        $itemproductqty = $_POST['itemquantity'];
+        $itemproductsize = $_POST['itemsize'];
+    }
+
+
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'][] = array();
+    }
+    
+    
+    // $_SESSION['cart'][] = [$itemproductname, $itemproductcolor, $itemproductprice, $itemproductqty]; just need to use one of these lines.
+    if (isset($itemproductcolor) and isset($itemproductname) and isset($itemproductprice) and isset($itemproductqty) and isset($itemproductsize)) {
+        array_push($_SESSION['cart'], [$itemproductname, $itemproductprice, $itemproductcolor, $itemproductqty, $itemproductsize]);   
+    }
+
+    // $b=array("itemproductname"=>"$itemproductname","itemproductqty"=>$itemproductqty);
+    // array_push($_SESSION['cart'],$b); // Items added to cart
+
+
     @ $db = new mysqli('localhost', 'root', '', 'f38_dg06');
     if (mysqli_connect_errno()) {
         echo 'Error: Could not connect to database. Please try again later.';
@@ -31,7 +57,7 @@
     //     $query = "select * from products";
     // }
     $query = "select * from products";
-
+    
     // $query = "select * from products";
    
     $result = $db->query($query);
@@ -124,6 +150,10 @@
                         echo "<input type=\"hidden\" name=\"productname\" value = \"".$row['productname']."\">";
                         echo "<input type=\"hidden\" name=\"productprice\" value = \"".$row['productprice']."\">";
                         echo "<p><em>$".$row['productprice']."</em></p>";
+                        // echo $_SESSION['cart'][2][1];
+                        echo '<pre>';
+                        var_dump($_SESSION['cart']);
+                        echo '</pre>';
                         echo "</form>";
                         echo "</div>";
                  
