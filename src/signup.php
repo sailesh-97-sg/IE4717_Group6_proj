@@ -39,7 +39,7 @@
             } else {
                 echo '<script>alert("Welcome '.$username.'");</script>';
                 $dbcnx->close();
-                echo '<script>window.location.replace("/Design_Project/IE4717_Group6_proj/html/login.php");</script>';
+                echo '<script>window.location.replace("/Design_Project/IE4717_Group6_proj/src/login.php");</script>';
                 exit;
             }
         }
