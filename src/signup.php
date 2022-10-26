@@ -1,4 +1,10 @@
 <?php
+    session_start();
+    if(isset($_SESSION['valid_user'])){
+        // to redirect to profile page if user happen to reach here for some reasons
+        echo '<script>alert("You are already logged in!");</script>';
+        echo '<script>window.location.replace("/Design_Project/IE4717_Group6_proj/src/login.php");</script>';
+    }
     if(isset($_REQUEST['register']))
     {
         if(empty($_REQUEST['username']) || empty($_REQUEST['email']) || empty($_REQUEST['password']) || empty($_REQUEST['password2']))
@@ -6,6 +12,7 @@
             echo '<script>alert("Please Fill in every detail!");</script>';
 
             // if header() function is used to redirect the page, it won't load JS alert.
+            // use window.location.replace() instead
             echo '<script>window.location.replace("'.$_SERVER['PHP_SELF'].'");</script>';
         } else {
             include "dbconnect.php";
