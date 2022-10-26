@@ -23,7 +23,7 @@ create table products
 insert into products values 
 ("Clothing 1", "Dry-Fit", 12.00, "www.google.com"),
 ("Clothing 2", "Casual", 15.50, "www.google.com"),
-("Clothing 3", "T-Shirts", 14.34, "www.google.com");
+("Clothing 4", "Dry-Fit", 13.00, "www.google.com");
 
 
 insert into users(username, password, email) values 

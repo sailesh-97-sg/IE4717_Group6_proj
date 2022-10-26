@@ -1,15 +1,18 @@
 body {
     margin: 0;
 }
-#wrapper{
+
+#wrapper {
     width: 100%;
     min-width: 900px;
 }
+
 #logo a img {
     background-color: blue;
     border-radius: 100px;
 }
-#tabs a{
+
+#tabs a {
     float: left;
     display: block;
     color: black;
@@ -19,31 +22,37 @@ body {
     font-size: 17px;
     color: white;
 }
-#tabs a:hover{
+
+#tabs a:hover {
     background-color: #4e53ff;
     color: black;
 }
-#search_bar input[type=text]{
-    float:left;
+
+#search_bar input[type=text] {
+    float: left;
     padding: 6px;
     border: 1;
     margin-top: 8px;
     margin-right: 5px;
     font-size: 17px;
 }
-#search_bar input[type=image]{
+
+#search_bar input[type=image] {
     background-color: white;
     float: left;
     padding: auto;
     margin-top: 8px;
     margin-right: 5px;
 }
-header{
+
+header {
     display: flex;
     padding: 10px 15px;
     background-color: blue;
 }
-#link_btn:link, #link_btn:visited{
+
+#link_btn:link,
+#link_btn:visited {
     background-color: #f44336;
     color: white;
     padding: 14px 25px;
@@ -51,10 +60,12 @@ header{
     text-decoration: none;
     display: inline-block;
 }
-#tabs{
+
+#tabs {
     flex: 1 0 50px;
 }
-footer{
+
+footer {
     background-color: black;
     color: white;
     padding: 15px 15px;
@@ -62,15 +73,20 @@ footer{
     line-height: normal;
     display: flex;
 }
+
 footer div p {
     font-size: 17px;
 }
-#contactdetails,#customerservice {
+
+#contactdetails,
+#customerservice {
     flex: 1 0 50px;
 }
-#socialmedia{
+
+#socialmedia {
     padding-right: 50px;
 }
+
 #socialmedia img {
     border-radius: 100px;
     margin: 5px 5px;
