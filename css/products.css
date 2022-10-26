@@ -115,3 +115,9 @@ body {
 .clothingbrandsfilter input:nth-of-type(1) {
     margin-top: 0px;
 }
+
+#submitbutton {
+    border-radius: 20px;
+    margin-top: 14px;
+    width: 90px;
+}

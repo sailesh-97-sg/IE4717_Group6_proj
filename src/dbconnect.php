@@ -1,5 +1,5 @@
 <?php
-@$dbcnx = new mysqli('localhost','dg06','dg06','f38_dg06');
+@$dbcnx = new mysqli('localhost','root','','f38_dg06');
 // @ to ignore error message display //
 if ($dbcnx->connect_error){
 	echo "Database is not online"; 
@@ -15,4 +15,4 @@ if (!$dbcnx->select_db ("f38_dg06")){
 
 // echo "<script>alert('DB connected');</script>";
 // $dbcnx->close();
-?>	
+?>

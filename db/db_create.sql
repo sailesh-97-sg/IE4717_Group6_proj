@@ -13,5 +13,18 @@ create table users
     postal varchar(10)
 );
 
+create table products
+(   productname char(50) not null primary key,
+    producttag char(50) not null,
+    productprice float unsigned not null,
+    productimage char(100)
+);
+
+insert into products values 
+("Clothing 1", "Dry-Fit", 12.00, "www.google.com"),
+("Clothing 2", "Casual", 15.50, "www.google.com"),
+("Clothing 3", "T-Shirts", 14.34, "www.google.com");
+
+
 insert into users(username, password, email) values 
 ('admin', md5('fashionspot'), 'admin@fashionspot.com');
