@@ -24,6 +24,21 @@
         echo '<script>window.location.replace("/Design_Project/IE4717_Group6_proj/src/payment.php");</script>';
         exit;
     }
+    if(isset($_REQUEST['update_qty'])){
+        $cart_count = count($_SESSION['cart']);
+        for ($i = 0; $i < $cart_count; $i++){
+            $name = $_SESSION['cart'][$i][0];
+            $new_qty = $_REQUEST[$name.'_qty'];
+            $_SESSION['cart'][$i][3] = $new_qty;
+        }
+    }
+    // Debug (To be removed later)----------------------------------------------
+    if(isset($_SESSION['cart'])){
+        for($a = 0; $a < count($_SESSION['cart']); $a++){
+            echo 'Item '.$a+1 .'\'quantity is: '.$_SESSION['cart'][$a][3];
+        }
+    }
+    //---------------------------------------------------------------------------
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -124,6 +139,7 @@
                                     <?php
                                 } else {
                                 ?>
+                                <form action="cart.php" method="GET" id = "cart_from">
                                 <table border="1" id = "item_table">
                                     <?php
                                     $count = count($_SESSION['cart']);
@@ -143,12 +159,15 @@
                                         //echo '<td rowspan = "2"><span id = "'.$name.'_price">$'.$qty * $price.'</span></td>';
                                         echo '</tr>';
                                         echo '<tr>';
-                                        echo '<td>Qty: <input type="number" min="0" id="'.$name.'_qty" value="'.$qty.'" onchange="update_price('.$price.',\''.$name.'_qty\',\''.$name.'_price\')"
+                                        echo '<input type="hidden" id = "'.$name.'" name = "'.$name.'" value = "'.$name.'">';
+                                        echo '<td>Qty: <input type="number" min="0" id="'.$name.'_qty" name="'.$name.'_qty" value="'.$qty.'" onchange="update_price('.$price.',\''.$name.'_qty\',\''.$name.'_price\')"
                                                 onkeydown = "return false;"></td>';
                                         echo '</tr>';
                                     }
                                     ?>
                                 </table>
+                                <input type="submit" id = "update_qty" name = "update_qty" hidden>
+                                </form>
                                 <?php
                             }}
                         ?>
@@ -270,6 +289,8 @@
         }
         var updated_totalprice = updated_summarySubTotal + updated_gst;
         total_price.setAttribute("value", updated_totalprice.toFixed(2));
+
+        document.getElementById('update_qty').click();
     }
     
     function set_shippingFees(){
