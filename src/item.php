@@ -33,18 +33,7 @@ $row = $result->fetch_assoc();
 
 <body>
     <div id="wrapper">
-        <div id="header">
-            <header>
-                <script src="../JS/header_logo.js"></script>
-                <!-- tabs contents are not the same for every page. It will be edited in html files.-->
-                <script src="../JS/header_tabs.js"></script>
-                <!--Search bar will be re-written in JS after login and cart buttons are added-->
-                <div id="search_bar">
-                    <input type="text" placeholder="Search...">
-                    <input type="image" src="../assets/search.png" name="search" width="35px" height="35px"
-                        alt="submit">
-                </div>
-            </header>
+        <?php include "header.php";?>
         </div>
         <form action="products.php" method="post">
             <div class="products_body">
@@ -107,6 +96,9 @@ $row = $result->fetch_assoc();
             echo "<input type=\"hidden\" name=\"itemprice\" value=\"".$row['productprice']."\">";
             ?>
         </form>
+        <div id="footer">
+            <script src="../JS/footer.js"></script>
+        </div>
 
     </div>
 
