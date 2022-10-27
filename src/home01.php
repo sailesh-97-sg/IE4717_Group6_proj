@@ -38,7 +38,7 @@ session_start();
                     $row = $result->fetch_assoc();
                     echo "<div class = \"productitems\">";
                         echo "<form action = \"item.php\" method=\"POST\">";
-                        echo "<input type=\"image\"  src=\"../assets/clothe1.jpg\" alt=\"\" height=\"150\" width=\"130\">";
+                        echo "<input type=\"image\"  src=\"".$row['productimage']."\" alt=\"\" height=\"150\" width=\"130\">";
                         echo "<p><strong>".$row['productname']."</strong></p>";
                         echo "<input type=\"hidden\" name=\"productname\" value = \"".$row['productname']."\">";
                         echo "<input type=\"hidden\" name=\"productprice\" value = \"".$row['productprice']."\">";

@@ -148,16 +148,16 @@
                    
                         echo "<div class = \"productitems\">";
                         echo "<form action = \"item.php\" method=\"POST\">";
-                        echo "<input type=\"image\"  src=\"../assets/clothe1.jpg\" alt=\"\" height=\"150\" width=\"130\">";
+                        echo "<input type=\"image\"  src=\"".$row['productimage']."\" alt=\"\" height=\"150\" width=\"130\">";
                         echo "<p><strong>".$row['productname']."</strong></p>";
                         echo "<input type=\"hidden\" name=\"productname\" value = \"".$row['productname']."\">";
                         echo "<input type=\"hidden\" name=\"productprice\" value = \"".$row['productprice']."\">";
                         echo "<p><em>$".$row['productprice']."</em></p>";
                         //use the below lines if you want to visually see the data inside the cart
                         // echo $_SESSION['cart'][2][1];
-                        // echo '<pre>';
-                        // var_dump($_SESSION['cart']);
-                        // echo '</pre>';
+                        echo '<pre>';
+                        var_dump($_SESSION['cart']);
+                        echo '</pre>';
                         echo "</form>";
                         echo "</div>";
                  

@@ -121,3 +121,7 @@ body {
     margin-top: 14px;
     width: 90px;
 }
+
+.productitems input {
+    border-radius: 20px;
+}

@@ -50,7 +50,7 @@ $row = $result->fetch_assoc();
             <div class="products_body">
                 <div class="itemspage">
                     <div class="productimage">
-                        <img src="../assets/clothe1.jpg" alt="" height="300px" width="200px">
+                        <img src="<?php echo $row['productimage']?>" alt="" height="300px" width="200px">
                         <p><strong><?php echo "".$row['productname'].""?></strong></p>
                         <p><strong><?php echo "$".$row['productprice'].""?></strong></p>
 
