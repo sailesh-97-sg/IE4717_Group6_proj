@@ -24,9 +24,9 @@
     }
 
 
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'][] = array();
-    }
+    // if (!isset($_SESSION['cart'])) {
+    //     $_SESSION['cart'][] = array();
+    // }
     
     
     // $_SESSION['cart'][] = [$itemproductname, $itemproductcolor, $itemproductprice, $itemproductqty]; Can use either this line or the one right below this to add to cart. Both of them work.
@@ -74,8 +74,8 @@
                 <!--Search bar will be re-written in JS after login and cart buttons are added-->
                 <div id="search_bar">
                     <input type="text" placeholder="Search...">
-                    <input type="image" src="../assets/search.png" name="search" width="35px" height="35px"
-                        alt="submit">
+                    <input type="image" src="<?php echo $row['productimage'];?>" name="search" width="35px"
+                        height="35px" alt="submit">
                 </div>
             </header>
         </div>
@@ -155,9 +155,9 @@
                         echo "<p><em>$".$row['productprice']."</em></p>";
                         //use the below lines if you want to visually see the data inside the cart
                         // echo $_SESSION['cart'][2][1];
-                        echo '<pre>';
-                        var_dump($_SESSION['cart']);
-                        echo '</pre>';
+                        // echo '<pre>';
+                        // var_dump($_SESSION['cart']);
+                        // echo '</pre>';
                         echo "</form>";
                         echo "</div>";
                  

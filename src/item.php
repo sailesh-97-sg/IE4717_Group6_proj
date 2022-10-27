@@ -34,71 +34,69 @@ $row = $result->fetch_assoc();
 <body>
     <div id="wrapper">
         <?php include "header.php";?>
-        </div>
-        <form action="products.php" method="post">
-            <div class="products_body">
-                <div class="itemspage">
-                    <div class="productimage">
-                        <img src="<?php echo $row['productimage']?>" alt="" height="300px" width="200px">
-                        <p><strong><?php echo "".$row['productname'].""?></strong></p>
-                        <p><strong><?php echo "$".$row['productprice'].""?></strong></p>
+    </div>
+    <form action="products.php" method="post">
+        <div class="products_body">
+            <div class="itemspage">
+                <div class="productimage">
+                    <img src="<?php echo $row['productimage']?>" alt="" height="300px" width="200px">
+                    <p><strong><?php echo "".$row['productname'].""?></strong></p>
+                    <p><strong><?php echo "$".$row['productprice'].""?></strong></p>
 
 
-                    </div>
-                    <div class="productdescription">
-                        <p><strong><?php ?></strong></p>
-                        <p>Made in Germany by the famous fashion designer Alberto Robin, this was released in 2002, as
-                            part
-                            of the Alberto Limited Edition. Aksdjnjasndkjasndkjanskdnaksjndkasndkasnkdanskdnaksjnkd</p>
-                        <div class="productsizes">
-                            <p>Sizes: </p>
-                            <input type="radio" name="itemsize" value="small" id="small" required>
-                            <label for="small">Small</label>
-                            <input type="radio" name="itemsize" value="medium" id="medium">
-                            <label for="medium">Medium</label>
-                            <input type="radio" name="itemsize" value="large" id="large">
-                            <label for="large">Large</label>
-                            <input type="radio" name="itemsize" value="extralarge" id="extralarge">
-                            <label for="extralarge">Extra Large</label>
-                        </div>
-
-                        <div class="coloroption">
-                            <p>Color Option:</p>
-                            <select name="itemcolor" id="color" required>
-                                <option value="red" style="background-color: red; color: white;">Red</option>
-                                <option value="blue" style="background-color: blue; color: white">Blue</option>
-                                <option value="green" style="background-color: green; color: white">Green</option>
-                                <option value="yellow" style="background-color: yellow; color: black">Yellow</option>
-                            </select>
-                        </div>
-
-                    </div>
-                    <div class="productaddtocart">
-                        <div class="quantity">
-                            <p>Qty: </p>
-                            <input type="text" name="itemquantity" required>
-                        </div>
-                        <div class="addtocart">
-                            <input type="submit" name="submit" id="submit" value="Add to Cart">
-
-                        </div>
-                        <div class="questionsredirect">
-                            <p><strong>Have a question?</strong></p>
-                            <p>Check our policy <a href="www.google.com">here</a>.</p>
-                        </div>
-
-                    </div>
                 </div>
+                <div class="productdescription">
+                    <p><strong><?php ?></strong></p>
+                    <p><?php echo($row['productdescription']);?></p>
+                    <div class="productsizes">
+                        <p>Sizes: </p>
+                        <input type="radio" name="itemsize" value="small" id="small" required>
+                        <label for="small">Small</label>
+                        <input type="radio" name="itemsize" value="medium" id="medium">
+                        <label for="medium">Medium</label>
+                        <input type="radio" name="itemsize" value="large" id="large">
+                        <label for="large">Large</label>
+                        <input type="radio" name="itemsize" value="extralarge" id="extralarge">
+                        <label for="extralarge">Extra Large</label>
+                    </div>
 
+                    <div class="coloroption">
+                        <p>Color Option:</p>
+                        <select name="itemcolor" id="color" required>
+                            <option value="red" style="background-color: red; color: white;">Red</option>
+                            <option value="blue" style="background-color: blue; color: white">Blue</option>
+                            <option value="green" style="background-color: green; color: white">Green</option>
+                            <option value="yellow" style="background-color: yellow; color: black">Yellow</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="productaddtocart">
+                    <div class="quantity">
+                        <p>Qty: </p>
+                        <input type="text" name="itemquantity" required>
+                    </div>
+                    <div class="addtocart">
+                        <input type="submit" name="submit" id="submit" value="Add to Cart">
+
+                    </div>
+                    <div class="questionsredirect">
+                        <p><strong>Have a question?</strong></p>
+                        <p>Check our policy <a href="www.google.com">here</a>.</p>
+                    </div>
+
+                </div>
             </div>
-            <?php 
+
+        </div>
+        <?php 
             echo "<input type=\"hidden\" name=\"itemname\" value=\"".$row['productname']."\">";
             echo "<input type=\"hidden\" name=\"itemprice\" value=\"".$row['productprice']."\">";
             ?>
-        </form>
-        <div id="footer">
-            <script src="../JS/footer.js"></script>
-        </div>
+    </form>
+    <div id="footer">
+        <script src="../JS/footer.js"></script>
+    </div>
 
     </div>
 
