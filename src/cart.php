@@ -25,11 +25,17 @@
         exit;
     }
     if(isset($_REQUEST['update_qty'])){
-        $cart_count = count($_SESSION['cart']);
-        for ($i = 0; $i < $cart_count; $i++){
-            $name = $_SESSION['cart'][$i][0];
-            $new_qty = $_REQUEST[$name.'_qty'];
-            $_SESSION['cart'][$i][3] = $new_qty;
+        if(isset($_SESSION['cart'])){
+            $cart_count = count($_SESSION['cart']);
+            for ($i = 0; $i < $cart_count; $i++){
+                $new_qty = $_REQUEST[$i.'_qty'];
+                if($new_qty > 0){
+                    $_SESSION['cart'][$i][3] = $new_qty;
+                } else {
+                    unset($_SESSION['cart'][$i]);
+                }
+            }
+            $_SESSION['cart'] = array_values($_SESSION['cart']);
         }
     }
     // Debug (To be removed later)----------------------------------------------
@@ -49,75 +55,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>FashionStore</title>
         <link rel="stylesheet" href="../css/general_style.css">
-        <style>
-            body {margin: 0px;}
-
-            #cart_body {
-                background-color: rgb(195, 195, 195);
-                width: 70%;
-                margin: auto;
-                padding: 20px 20px;
-                border-radius: 20px;
-                min-width: 900px;
-                display: grid;
-                grid-template-columns: 80% 18%;
-                grid-gap: 20px;
-            }
-            #item_table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-            #item_table tr th{
-                padding: 0px 20px;
-                background-color: rgb(42, 87, 154);
-            }
-            #item_table tr td{
-                padding: 10px 10px;
-                font-size: 20px;
-            }
-            #balance_table{
-                border-style: outset;
-                background-color: black;
-                width: 100%;
-                text-align: center;
-            }
-            #balance_table tr th{
-                padding: 10px 20px;
-                color: white;
-
-            }
-            #balance_table tr td{
-                padding: 10px 10px;
-                color: white;
-            }
-            #subtotol_table{
-                width: 100%;
-                text-align: left;
-            }
-            #shipping_table tr td{
-                font-size: 20px;
-            }
-            #checkout {
-                border-radius: 10px;
-                background-color: rgb(234, 116, 73);
-                color: white;
-            }
-            input[type=number] {
-                text-align: right;
-                width: 50px;
-            }
-            .item_total_price input[type=text]{
-                width: 50px;
-                border: none;
-                border-color: transparent;
-            }
-            #subtotol_table tr td input[type=text]:read-only{
-                width: 50px;
-                border: none transparent;
-                background-color: black;
-                color: white;
-            }
-        </style>
+        <link rel="stylesheet" href="../css/cart.css">
     </head>
     <body>
         <div id="wrapper">
@@ -155,12 +93,12 @@
                                         $subtotal = $subtotal + ($price * $qty);
                                         echo '<tr>';
                                         echo '<td>'.$name.'   Size: '.$size.'   Color: '.$color.'</td>';
-                                        echo '<td rowspan = "2" style="width:100px;"><span class = "item_total_price"><input type="text" id="'.$name.'_price" value="'.$price*$qty.'" disabled></span></td>';
+                                        echo '<td rowspan = "2" style="width:100px;"><span class = "item_total_price"><input type="text" id="'.$i.'_price" value="'.$price*$qty.'" disabled></span></td>';
                                         //echo '<td rowspan = "2"><span id = "'.$name.'_price">$'.$qty * $price.'</span></td>';
                                         echo '</tr>';
                                         echo '<tr>';
-                                        echo '<input type="hidden" id = "'.$name.'" name = "'.$name.'" value = "'.$name.'">';
-                                        echo '<td>Qty: <input type="number" min="0" id="'.$name.'_qty" name="'.$name.'_qty" value="'.$qty.'" onchange="update_price('.$price.',\''.$name.'_qty\',\''.$name.'_price\')"
+                                        //echo '<input type="hidden" id = "'.$i.'" name = "'.$i.'" value = "'.$i.'">';
+                                        echo '<td>Qty: <input type="number" min="0" id="'.$i.'_qty" name="'.$i.'_qty" value="'.$qty.'" onchange="update_price('.$price.',\''.$i.'_qty\',\''.$i.'_price\')"
                                                 onkeydown = "return false;"></td>';
                                         echo '</tr>';
                                     }

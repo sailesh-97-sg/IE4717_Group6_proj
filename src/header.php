@@ -15,6 +15,9 @@
         <input type="text" placeholder="Search...">
         <input type="image" src="../assets/search.png" name="search" width="35px" height="35px" alt="submit">
     </div>
+    <div id="cart">
+        <a href="cart.php"><img src="../assets/cart.jpg" alt="cart_img" width="35px" height="35px"></a>
+    </div>
     <div id="login_profile">
         <a href="login.php" target="_self" id="link_btn">
             <?php 

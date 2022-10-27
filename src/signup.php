@@ -46,7 +46,8 @@
             } else {
                 echo '<script>alert("Welcome '.$username.'");</script>';
                 $dbcnx->close();
-                echo '<script>window.location.replace("/Design_Project/IE4717_Group6_proj/src/login.php");</script>';
+                //echo '<script>window.location.replace("/Design_Project/IE4717_Group6_proj/src/login.php");</script>';
+                echo '<script>window.location.replace("'.trim(str_replace("http://localhost:8000","",$_SERVER['HTTP_REFERER'])).'");</script>';
                 exit;
             }
         }
