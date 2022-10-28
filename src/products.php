@@ -61,6 +61,14 @@
         $query = "select * from products";
 
     }
+
+    if(isset($_POST['pricefilter']) and $_POST['pricefilter'] == 'lowtohigh') {
+        $query = $query." order by productprice asc";
+    }
+    else if (isset($_POST['pricefilter']) and $_POST['pricefilter'] == 'hightolow') {
+        $query = $query." order by productprice desc";
+    }
+
     $result = $dbcnx->query($query);
     $num_results = $result->num_rows;   
     
@@ -74,10 +82,14 @@
                         <p><strong>Products:</strong></p>
                         <p>Filter by:</p>
                         <div class="pricefilter">
-                            <input type="radio" name="pricefilter" id="lowtohigh" class="pricefiltering" checked>
+                            <input type="radio" name="pricefilter" id="lowtohigh" class="pricefiltering"
+                                value="lowtohigh"
+                                <?php if(isset($_POST['pricefilter']) and $_POST['pricefilter'] == "lowtohigh") { echo 'checked="checked"';} ?>>
                             <label for="lowtohigh">Low to High</label>
                             <br>
-                            <input type="radio" name="pricefilter" id="hightolow" class="pricefiltering">
+                            <input type="radio" name="pricefilter" value="hightolow" id="hightolow"
+                                class="pricefiltering"
+                                <?php if(isset($_POST['pricefilter']) and $_POST['pricefilter'] == "hightolow") { echo 'checked="checked"';} ?>>
                             <label for="hightolow">High to Low</label>
                         </div>
                         <div class="genderfilter">
@@ -103,16 +115,16 @@
                                 <?php if(isset($clothingtype) and $clothingtype == "shirts") { echo 'checked="checked"';} ?>>
                             <label for="shirts">Shirts</label>
                             <br>
-                            <input type="radio" name="clothingtype" id="tshirts" value="tshirts"
+                            <!-- <input type="radio" name="clothingtype" id="tshirts" value="tshirts"
                                 <?php if(isset($clothingtype) and $clothingtype == "tshirts") { echo 'checked="checked"';} ?>>
                             <label for="tshirts">T-Shirts</label>
-                            <br>
+                            <br> -->
                             <input type="radio" name="clothingtype" id="all" value="all"
                                 <?php if(isset($clothingtype) and $clothingtype == "all") { echo 'checked="checked"';} ?>>
                             <label for="all">All</label>
 
                         </div>
-                        <div class="clothingbrandsfilter">
+                        <!-- <div class="clothingbrandsfilter">
                             <p><strong>Clothing Brands:</strong></p>
                             <input type="radio" name="clothingbrand" id="adidas" value="adidas">
                             <label for="dryfit">Adidas</label>
@@ -125,7 +137,7 @@
                             <br>
                             <input type="radio" name="clothingbrand" id="h&m" value="h&m">
                             <label for="tshirts">H&M</label>
-                        </div>
+                        </div> -->
                         <input type="submit" value="Apply" id="submitbutton">
                     </form>
                 </div>

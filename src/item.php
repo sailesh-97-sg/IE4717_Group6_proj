@@ -74,7 +74,7 @@ $row = $result->fetch_assoc();
                 <div class="productaddtocart">
                     <div class="quantity">
                         <p>Qty: </p>
-                        <input type="text" name="itemquantity" required>
+                        <input type="number" min=1 max=10 name="itemquantity" style="text-align: center;" required>
                     </div>
                     <div class="addtocart">
                         <input type="submit" name="submit" id="submit" value="Add to Cart">
