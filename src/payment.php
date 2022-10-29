@@ -5,7 +5,7 @@
         echo '<script>window.location.replace("/Design_Project/IE4717_Group6_proj/src/login.php");</script>';
         exit;
     }
-    if(!isset($_SESSION['subtotal']) && !isset($_SESSION['total'])){
+    if(!isset($_SESSION['subtotal']) && !isset($_SESSION['total']) && !isset($_SESSION['cart'])){
         // in case user reaches to payment without adding any item to cart
         echo '<script>alert("Your cart is empty!");</script>';
         //echo $_SERVER['HTTP_REFERER'];
@@ -20,6 +20,31 @@
     if(isset($_REQUEST['set_billing_add'])){
         //echo '<script>alert("'.$_REQUEST['set_billing_add'].'");</script>';
     }
+
+    //get contact information from database
+    $username = $_SESSION['valid_user'];
+    $postal = "";
+    $address = "";
+    $contact_no = "";
+    include "dbconnect.php";
+    $query = "select contact, address, postal from users where username = '$username'";
+    $result = $dbcnx->query($query);
+    $num_results = $result->num_rows;
+    if($num_results == 0){
+        echo "There was an error retrieving data from database!";
+        echo '<script>window.location.replace("'.trim(str_replace("http://localhost:8000","",$_SERVER['HTTP_REFERER'])).'");</script>';
+        exit;
+    } else {
+        $row = $result->fetch_assoc();
+        $postal = $row['postal'];
+        $address = $row['address'];
+        $contact = $row['contact'];
+        //echo '<script>alert("'.$postal.'");</script>';
+        //echo '<script>alert("'.$address.'");</script>';
+        //echo '<script>alert("'.$contact.'");</script>';
+    }
+
+    $dbcnx->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -166,11 +191,17 @@
                             </tr>
                             <tr>
                                 <td colspan="2">Postal Code<br><input type="text" placeholder="123456" name="delivery_postal_code" class="delivery">&nbsp;&nbsp;&nbsp;
-                                <input type="button" name="get_address" class="delivery" id="get_address_btn" value="Use Default Address"></td>
+                                <!-- These hidden inputs are not to be used. They are to store values from php variables for JS use. -->
+                                <input type="hidden" name="temp_postal" id="temp_postal" value="<?php echo $postal; ?>">
+                                <input type="hidden" name="temp_address" id="temp_address" value="<?php echo $address; ?>">
+                                <input type="hidden" name="temp_contact" id="temp_contact" value="<?php echo $contact; ?>">                              
+                                <!-- -->
+                                <label for="get_address_btn">Use Default Address</label>
+                                <input type="checkbox" name="get_address" class="delivery" id="get_address_btn" value="Use Default Address" onchange="getAddress(this)"></td>
                             </tr>
                             <tr>
                                 <td colspan="2">Address<br>
-                                <textarea name="delivery_add" class="delivery" id="delivery_addID" rows="2" style="width: 50%; resize:none;" maxlength="60" wrap="hard"></textarea></td>
+                                <textarea name="delivery_add" class="delivery" id="delivery_addID" rows="2" style="width: 50%; resize:none;" maxlength="60" wrap="hard" required></textarea></td>
                             </tr>
                             <tr>
                                 <td colspan="2">Contact Number<br>
@@ -186,10 +217,10 @@
                                 <th colspan="2">Billing Address</th>
                             </tr>
                             <tr>
-                                <td colspan="2">Postal Code<br><input type="text" placeholder="123456" name="billing_postal" id="billing_postalID" class="billing"></td>
+                                <td colspan="2">Postal Code<br><input type="text" placeholder="123456" name="billing_postal" id="billing_postalID" class="billing" disabled></td>
                             </tr>
                             <tr>
-                                <td colspan="2">Address<br><textarea name="billing_add" class="billing" id="billing_addID" rows="2" style="width: 50%;resize:none;" maxlength="60" wrap="hard"></textarea></td>
+                                <td colspan="2">Address<br><textarea name="billing_add" class="billing" id="billing_addID" rows="2" style="width: 50%;resize:none;" maxlength="60" wrap="hard" disabled></textarea></td>
                             </tr>
                         </table>
                     </div>
@@ -207,8 +238,12 @@
     function isBillingAddSame(chk_btn){
         if(chk_btn.checked == true){
             document.getElementById('billing_table').hidden = true;
+            document.getElementsByClassName('billing')[0].setAttribute("disabled", true);
+            document.getElementsByClassName('billing')[1].setAttribute("disabled", true);
         } else {
             document.getElementById('billing_table').hidden = false;
+            document.getElementsByClassName('billing')[0].removeAttribute("disabled");
+            document.getElementsByClassName('billing')[1].removeAttribute("disabled");
         }
         return true;
     }
@@ -244,5 +279,26 @@
         var expiry_date = document.getElementById('expiry_date');
         expiry_date.removeEventListener("mouseleave", chk_expiry_date ,false);
 
+    }
+
+    function getAddress(dom){
+        var delivery_postal = document.getElementsByClassName('delivery')[2];
+        var delivery_address = document.getElementsByClassName('delivery')[4];
+
+        var billing_postal = document.getElementsByClassName('billing')[0];
+        var billing_address = document.getElementsByClassName('billing')[1];
+        if(dom.checked == true){
+            delivery_address.value = document.getElementById('temp_address').value;
+            delivery_postal.value = document.getElementById('temp_postal').value;
+
+            billing_address.value = document.getElementById('temp_address').value;
+            billing_postal.value = document.getElementById('temp_postal').value;
+        } else {
+            delivery_address.value = "";
+            delivery_postal.value = "";
+
+            billing_address.value = "";
+            billing_postal.value = "";
+        }
     }
 </script>

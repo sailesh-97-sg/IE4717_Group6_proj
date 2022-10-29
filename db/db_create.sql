@@ -30,5 +30,5 @@ insert into products values
 ("Fashion B2", "Shirts", 24.00, "../assets/shirt02.jpg", "This is the second of our B series, which comes in a different color from the original."),
 ("Fashion B3", "Shirts", 25.00, "../assets/shirt03.jpg", "This is the final shirt in our B series lineup, which was one of our most popular series in the past month.");
 
-insert into users(username, password, email) values 
-('admin', md5('fashionspot'), 'admin@fashionspot.com');
+insert into users values 
+('admin', md5('fashionspot'), 'admin@fashionspot.com', '12345678', '50 Nanyang Ave', '639798');
