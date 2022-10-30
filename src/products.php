@@ -43,6 +43,9 @@
     if (isset($_POST['clothingtype'])) {
         $clothingtype = $_POST['clothingtype'];
     }
+    if (isset($_POST['searchtext'])) {
+        $searcheditem = $_POST['searchtext'];
+    }
 
     if (isset($clothingtype) && $clothingtype == "dryfit") {
         $query = "select * from products where producttag = 'Dry-Fit'";
@@ -60,6 +63,10 @@
     else {
         $query = "select * from products";
 
+    }
+
+    if(isset($searcheditem)) {
+        $query = $query." where productname = '".$searcheditem."'";
     }
 
     if(isset($_POST['pricefilter']) and $_POST['pricefilter'] == 'lowtohigh') {
