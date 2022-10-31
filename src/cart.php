@@ -3,7 +3,7 @@
     if(isset($_REQUEST['chkout_btn'])){
         if(!isset($_SESSION['valid_user'])){
             echo '<script>alert("You must log in first to proceed!");</script>';
-            echo '<script>window.location.replace("/Design_Project/IE4717_Group6_proj/src/login.php");</script>';
+            echo '<script>window.location.replace("login.php");</script>';
             exit;
         }
         //echo gettype($_REQUEST['subtotal']);
@@ -12,16 +12,19 @@
         //echo $_REQUEST['gst'];
         if(isset($_REQUEST['subtotal'])==false && isset($_REQUEST['total'])==false){
             echo '<script>alert("The cart is empty!");</script>';
-            echo '<script>window.location.replace("/Design_Project/IE4717_Group6_proj/src/cart.php");</script>';
+            echo '<script>window.location.replace("cart.php");</script>';
         }
         if($_REQUEST['subtotal'] == 0 && $_REQUEST['total'] == 0) {
             echo '<script>alert("The cart is empty!");</script>';
-            echo '<script>window.location.replace("/Design_Project/IE4717_Group6_proj/src/cart.php");</script>';
+            echo '<script>window.location.replace("cart.php");</script>';
         }
         $_SESSION['subtotal'] = $_REQUEST['subtotal'];
         $_SESSION['total'] = $_REQUEST['total'];
+        $_SESSION['shipping'] = $_REQUEST['shipping'];
+        $_SESSION['total_qty'] = $_REQUEST['total_qty'];
+        $_SESSION['no_of_products'] = count($_SESSION['cart']);
         echo '<script>alert("Proceeding to Payment");</script>';
-        echo '<script>window.location.replace("/Design_Project/IE4717_Group6_proj/src/payment.php");</script>';
+        echo '<script>window.location.replace("payment.php");</script>';
         exit;
     }
     if(isset($_REQUEST['update_qty'])){
@@ -148,6 +151,7 @@
                                             }
                                             ?>" readonly></td>
                                             <!--<td><span id = "subtotal"><?php //echo "$".$subtotal; ?></span></td>-->
+                                            <input type="hidden" name="total_qty" id="total_qty" value="<?php echo $total_qty; ?>">
                                         </tr>
                                         <tr>
                                             <td>GST 7%</td>

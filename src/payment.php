@@ -17,9 +17,6 @@
         //echo $_SERVER['HTTP_REFERER'];
         echo '<script>window.location.replace("'.trim(str_replace("http://localhost:8000","",$_SERVER['HTTP_REFERER'])).'");</script>';
     }
-    if(isset($_REQUEST['set_billing_add'])){
-        //echo '<script>alert("'.$_REQUEST['set_billing_add'].'");</script>';
-    }
 
     //get contact information from database
     $username = $_SESSION['valid_user'];
@@ -129,7 +126,7 @@
         <div id="wrapper">
             <?php include "header.php"?>
             <div id="payment_body">
-                <form action="" method="POST">
+                <form action="confirmOrder.php" method="POST" autocomplete="off">
                     <div id = "payment">
                         <table border="1" id="payment_table" style="border-collapse:collapse; width: 70%;">
                             <tr>
@@ -190,7 +187,7 @@
                                 <td>Last Name<br><input type="text" placeholder="Smith" class="delivery" name="last_name"></td>
                             </tr>
                             <tr>
-                                <td colspan="2">Postal Code<br><input type="text" placeholder="123456" name="delivery_postal_code" class="delivery">&nbsp;&nbsp;&nbsp;
+                                <td colspan="2">Postal Code<br><input type="text" placeholder="123456" maxlength="6" name="delivery_postal_code" class="delivery">&nbsp;&nbsp;&nbsp;
                                 <!-- These hidden inputs are not to be used. They are to store values from php variables for JS use. -->
                                 <input type="hidden" name="temp_postal" id="temp_postal" value="<?php echo $postal; ?>">
                                 <input type="hidden" name="temp_address" id="temp_address" value="<?php echo $address; ?>">

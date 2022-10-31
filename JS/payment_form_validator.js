@@ -94,10 +94,11 @@ function chk_postal_code(event){
 
 function chk_address(event){
     var dom = event.currentTarget;
-    var pattern = /[@,!,#,$,%,^,&,*]/g;
+    var pattern = /[@!#$%^&*]/g;
     var pos = dom.value.search(pattern);
 
     if(pos != -1){
+        alert(pos);
         dom.setCustomValidity("Address must not include invalid characters. (!@#$%%^&*).");
         dom.reportValidity();
         dom.focus();
