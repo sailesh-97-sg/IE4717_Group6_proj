@@ -1,7 +1,7 @@
 <div id="header">
     <header>
         <div id="logo">
-            <a href="home01.php"><img src="../assets/facebook.png" alt="Logo" height="55px" width="55px"></a>
+            <a href="home01.php"><img src="../assets/fashionstore.png" alt="Logo" height="55px" width="55px"></a>
         </div>
         <!-- tabs contents are not the same for every page. It will be edited in html files.-->
         <div id="tabs">
