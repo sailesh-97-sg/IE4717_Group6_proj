@@ -121,13 +121,13 @@ input[type="radio"]:focus+label {
     border: 2px solid #444
 }
 
-
+/* 
 input {
     height: 40px;
     margin: 0px;
     padding: 0px;
     width: 70px;
-}
+} */
 
 .productsizes {
     display: flex;
