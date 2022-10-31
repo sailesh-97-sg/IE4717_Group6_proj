@@ -45,3 +45,16 @@ body {
 input {
     border-radius: 20px;
 }
+
+.productsbox {
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+    border-radius: 20px;
+    background-color: rgb(223, 223, 223);
+
+
+
+}

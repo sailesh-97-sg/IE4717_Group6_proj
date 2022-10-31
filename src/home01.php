@@ -17,7 +17,7 @@ session_start();
 <body>
     <?php 
     include "dbconnect.php";
-    $query = "select * from products order by rand() limit 3";
+    $query = "select * from products order by rand() limit 5";
     $result = $dbcnx->query($query);
     $num_results = $result->num_rows;
     ?>
@@ -33,7 +33,9 @@ session_start();
                 </div>
             </div>
             <div class="randomproductdisplay">
-                <?php 
+                <div class="productsbox">
+
+                    <?php 
                 for($i=0;$i<$num_results;$i++) {
                     $row = $result->fetch_assoc();
                     echo "<div class = \"productitems\">";
@@ -52,6 +54,8 @@ session_start();
                         echo "</div>";                    
                 }
                 ?>
+                </div>
+
             </div>
         </div>
         <div id="footer">
