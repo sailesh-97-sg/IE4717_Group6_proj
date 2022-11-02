@@ -16,7 +16,7 @@
             <h2>Order Confirmation</h2>
             <h4>Thank you for your purchase</h4>
             <p>Email confirmation will be sent to you shortly</p>
-            <a href="../login_page/login.html">
+            <a href="products.php">
                 <button>Continue Shopping</button>
             </a>
 
@@ -109,7 +109,7 @@
 
 <!-- email code can be put here. -->
 <?php 
-$to = 'f32ee@localhost';
+$to = $useremail;
 $subject = 'Receipt - FashionStore Purchase of Goods';
 $message = 'Thank you for purchasing from FashionStore!'."\r\n".'Your order has been confirmed and will be ready for delivery shortly.'."\r\n"."Please confirm your order details below: "."\r\n\r\n";
 $count = count($_SESSION['cart']);
@@ -124,14 +124,14 @@ for($i = 0; $i < $count; $i++){
     $total_qty = $total_qty + $qty;
     $subtotal = $subtotal + ($price * $qty);
     // $message = $message.$name."\r\n"."$".$price."\r\n"."Color: ".$color."\r\n"."Quantity: ".$qty."\r\n"."Size: ".$size;
-    $message = $message.$name." "." x".$qty."\r\n";
+    $message = $message.$name." "." x".$qty."\r\n"."Size: ".$size."\r\n"."Color: ".$color."\r\n";
 }
 $message = $message."\r\n"."Total Cost: $".$_SESSION['total'];
-$headers = 'From: purchase@fashionstore.com' . "\r\n" .
-'Reply-To: f32ee@localhost' . "\r\n" .
+$headers = 'From: purchase@fashionstore.' . "\r\n" .
+'Reply-To: '.$useremail.'' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers,
-'-ff32ee@localhost');
+'-'.$useremail.'');
 echo ("mail sent to : ".$to);
 ?>
 

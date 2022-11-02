@@ -44,7 +44,7 @@
         $clothingtype = $_POST['clothingtype'];
     }
     if (isset($_POST['searchtext'])) {
-        $searcheditem = $_POST['searchtext'];
+        $searcheditem = addslashes($_POST['searchtext']);
     }
 
     if (isset($clothingtype) && $clothingtype == "dryfit") {
