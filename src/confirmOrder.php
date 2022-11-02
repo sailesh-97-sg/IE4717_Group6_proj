@@ -88,9 +88,20 @@
         $dbcnx->close();
         exit;
     }
-    $useremail = '';
     
-    
+    $useremail = "";
+    $query = "select email from users where username = '$username'";
+    $result = $dbcnx->query($query);
+    $num_rows = $result->num_rows;
+
+    if($num_rows == 0){
+        echo "An error has occured while getting user's email";
+        $dbcnx->close();
+        exit;
+    } else {
+        $row = $result->fetch_assoc();
+        $useremail = $row['email'];
+    }
     $dbcnx->close();
 ?>
 
