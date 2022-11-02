@@ -39,16 +39,16 @@ session_start();
             </div>
             <div class="message">
                 <p><strong>Leave Us A Message</strong></p>
-                <form action="POST">
+                <form action="" method="POST">
                     <div class="messageinput">
                         <div class="nameandemail">
                             <div class="feedbackname">
                                 <label for="nameforfeedback">Name:</label>
-                                <input type="text" id="nameforfeedback">
+                                <input type="text" id="nameforfeedback" name="nameforfb">
                             </div>
                             <div class="feedbackemail">
                                 <label for="emailforfeedback">Email:</label>
-                                <input type="text" id="emailforfeedback">
+                                <input type="email" id="emailforfeedback" name="emailforfb">
                             </div>
                             <div class="feedbacksubmit">
                                 <input type="submit" id="submitform">
@@ -56,7 +56,7 @@ session_start();
                         </div>
                         <div class="feedbacksubject">
                             <label for="subjectforfeedback">Subject:</label>
-                            <input type="text" id="subjectforfeedback">
+                            <input type="text" id="subjectforfeedback" name="subjectforfb">
                         </div>
                     </div>
                 </form>
@@ -88,3 +88,33 @@ session_start();
     </div>
 </body>
 </html>
+<script>
+    var nameFB = document.getElementById('nameforfeedback');
+    var emailFB = document.getElementById('emailforfeedback');
+
+    nameFB.addEventListener("change",() => {
+        var pos = nameFB.value.search(/([a-z]+ ?){1,4}/);
+        
+        if(pos != 0){
+            nameFB.setCustomValidity("Name must not include invalid characters and digits");
+            nameFB.reportValidity();
+            setTimeout(function(){nameFB.setCustomValidity("");},2000);
+            nameFB.focus();
+            nameFB.select();
+            return false;
+        }
+    },false);
+
+    emailFB.addEventListener("change",() => {
+        var pos = emailFB.value.search(/^[\w.-]+@([a-z]{2,5}\.){1,3}[a-z]{2,3}$/);
+
+        if(pos != 0){
+            emailFB.setCustomValidity("Email format should be emailuser@domain.com");
+            emailFB.reportValidity();
+            setTimeout(function(){emailFB.setCustomValidity("");},2000);
+            emailFB.focus();
+            emailFB.select();
+            return false;
+        }
+    }, false);
+</script>

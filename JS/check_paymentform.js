@@ -1,12 +1,4 @@
 //Card Validation-----------------------------------------------
-var card_no = document.getElementById('card_no');
-card_no.addEventListener("change", chk_card_no ,false);
-
-var security_code = document.getElementById('security_code');
-security_code.addEventListener("change", chk_security_code ,false);
-
-var card_name = document.getElementById('name_onCard');
-card_name.addEventListener("change", chk_name_onCard ,false);
 //--------------------------------------------------------------
 //Delivery Address Validation-----------------------------------
 var delivery_address = document.getElementsByClassName('delivery');

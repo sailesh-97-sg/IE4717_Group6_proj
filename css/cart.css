@@ -64,4 +64,5 @@ input[type=number] {
     border: none transparent;
     background-color: black;
     color: white;
+    text-align: left;
 }

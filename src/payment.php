@@ -305,16 +305,39 @@ function disable_card(value) {
     document.getElementById('expiry_year').setAttribute("disabled", value);
     document.getElementById('security_code').setAttribute("disabled", value);
     document.getElementById('name_onCard').setAttribute("disabled", value);
+
 }
 
 function enable_listener() {
     var expiry_date = document.getElementById('expiry_date');
     expiry_date.addEventListener("mouseleave", chk_expiry_date, false);
+    
+    var card_no = document.getElementById('card_no');
+    card_no.addEventListener("change", chk_card_no ,false);
+
+    var security_code = document.getElementById('security_code');
+    security_code.addEventListener("change", chk_security_code ,false);
+
+    var card_name = document.getElementById('name_onCard');
+    card_name.addEventListener("change", chk_name_onCard ,false);
 }
 
 function disable_listener() {
     var expiry_date = document.getElementById('expiry_date');
     expiry_date.removeEventListener("mouseleave", chk_expiry_date, false);
+    flag1 = true;
+    
+    var card_no = document.getElementById('card_no');
+    card_no.removeEventListener("change", chk_card_no ,false);
+    flag2 = true;
+
+    var security_code = document.getElementById('security_code');
+    security_code.removeEventListener("change", chk_security_code ,false);
+    flag3 = true;
+
+    var card_name = document.getElementById('name_onCard');
+    card_name.removeEventListener("change", chk_name_onCard ,false);
+    flag4 = true;
 
 }
 
@@ -339,12 +362,14 @@ function getAddress(dom) {
 
         billing_address.value = "";
         billing_postal.value = "";
+        flag1 = flag2 = flag3 = flag4 = true;
     }
 }
 
 function submit_form() {
     var form = document.getElementById('order_form');
-
+    var payment_method = document.getElementsByName('payment_method');
+    
     if (flag1 && flag2 && flag3 && flag4 && flag5 && flag6 && flag7 && flag8) {
         form.submit();
     } else {

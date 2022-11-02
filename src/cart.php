@@ -147,7 +147,7 @@
                                             if(!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0){
                                                 echo "0.00";
                                             } else {
-                                                echo $subtotal; 
+                                                echo number_format($subtotal, 2,'.',''); 
                                             }
                                             ?>" readonly></td>
                                             <!--<td><span id = "subtotal"><?php //echo "$".$subtotal; ?></span></td>-->
@@ -159,7 +159,7 @@
                                             if(!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0){
                                                 echo "0.00";
                                             } else { $gst = $subtotal * 0.07;
-                                                    echo $gst;
+                                                    echo number_format($gst, 2,'.','');
                                             }
                                             ?>" readonly></td>
                                             <!--<td><span id = "gst"><?php 
@@ -183,7 +183,7 @@
                                             if(!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0){
                                                 echo "0.00";
                                             } else { $total_price = $subtotal + $gst;
-                                                    echo $total_price;
+                                                    echo number_format($total_price, 2,'.','');
                                             }
                                             ?>" readonly></td>
                                         </tr>
