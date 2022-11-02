@@ -9,13 +9,13 @@
         // in case user reaches to payment without adding any item to cart
         echo '<script>alert("Your cart is empty!");</script>';
         //echo $_SERVER['HTTP_REFERER'];
-        echo '<script>window.location.replace("'.trim(str_replace("http://localhost:8000","",$_SERVER['HTTP_REFERER'])).'");</script>';
+        echo '<script>window.location.replace("cart.php");</script>';
     }
     if($_SESSION['subtotal'] == 0 && $_SESSION['total'] == 0){
         // in case user reaches to payment without adding any item to cart
         echo '<script>alert("Your cart is empty!");</script>';
         //echo $_SERVER['HTTP_REFERER'];
-        echo '<script>window.location.replace("'.trim(str_replace("http://localhost:8000","",$_SERVER['HTTP_REFERER'])).'");</script>';
+        echo '<script>window.location.replace("cart.php");</script>';
     }
 
     //get contact information from database
@@ -126,7 +126,7 @@
         <div id="wrapper">
             <?php include "header.php"?>
             <div id="payment_body">
-                <form action="confirmOrder.php" method="POST" autocomplete="off">
+                <form action="confirmOrder.php" method="POST" autocomplete="off" id="order_form">
                     <div id = "payment">
                         <table border="1" id="payment_table" style="border-collapse:collapse; width: 70%;">
                             <tr>
@@ -137,24 +137,24 @@
                                     <input type="radio" name="payment_method" value="credit" checked onchange="payment(this)">Card/Debit Card<br><br><br>
                                     <input type="radio" name="payment_method" value="cash" onchange="payment(this)">Cash on Delivery
                                 </td>
-                                <td colspan="2">Card Number<br><input type="text" class="card" name="card_no" id="card_no" placeholder="1111-2222-3333-4444" style="width: 90%;"></td>
+                                <td colspan="2">Card Number<br><input type="text" class="card" name="card_no" id="card_no" placeholder="1111222233334444" maxlength="16" style="width: 90%;"></td>
                             </tr>
                             <tr>
                                 <td id="expiry_date">Expiry Date <br>
                                     <!--<input type="number" name="expiry_month" class="card" id="expiry_month" placeholder="MM" min = "1" max = "12" style="width: 40px;" onkeydown="return false;">--> 
                                     <select name="expiry_month" name="expiry_month" class="card" id="expiry_month">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
+                                        <option value="0">1</option>
+                                        <option value="1">2</option>
+                                        <option value="2">3</option>
+                                        <option value="3">4</option>
+                                        <option value="4">5</option>
+                                        <option value="5">6</option>
+                                        <option value="6">7</option>
+                                        <option value="7">8</option>
+                                        <option value="8">9</option>
+                                        <option value="9">10</option>
+                                        <option value="10">11</option>
+                                        <option value="11">12</option>
                                     </select>
                                     / 
                                     <!--<input type="number" name="expiry_year" class="card" id="expiry_year" placeholder="YYYY" style="width: 80px;">-->
@@ -167,7 +167,7 @@
                                     </select>
                                 </td>
                                 <td>Security Code<br>
-                                    <input type="text" name="security_code" class="card" placeholder="XXX" id="security_code" style="width: 50px;">
+                                    <input type="text" name="security_code" class="card" placeholder="XXX" id="security_code" style="width: 50px;" maxlength="3">
                                 </td>
                             </tr>
                             <tr>
@@ -193,8 +193,8 @@
                                 <input type="hidden" name="temp_address" id="temp_address" value="<?php echo $address; ?>">
                                 <input type="hidden" name="temp_contact" id="temp_contact" value="<?php echo $contact; ?>">                              
                                 <!-- -->
-                                <label for="get_address_btn">Use Default Address</label>
-                                <input type="checkbox" name="get_address" class="delivery" id="get_address_btn" value="Use Default Address" onchange="getAddress(this)"></td>
+                                <label for="get_address_btn">Use Previous Address Details</label>
+                                <input type="checkbox" name="get_address" class="delivery" id="get_address_btn" value="Use Previous Address Details" onchange="getAddress(this)"></td>
                             </tr>
                             <tr>
                                 <td colspan="2">Address<br>
@@ -221,7 +221,7 @@
                             </tr>
                         </table>
                     </div>
-                    <input type="submit" value="Submit Order" name="submit_order" id="submit_order">
+                    <input type="button" value="Submit Order" name="submit_order" id="submit_order" onclick="submit_form()">
                 </form>
             </div>
             <div id="footer">
@@ -281,21 +281,34 @@
     function getAddress(dom){
         var delivery_postal = document.getElementsByClassName('delivery')[2];
         var delivery_address = document.getElementsByClassName('delivery')[4];
+        var delivery_contact = document.getElementsByClassName('delivery')[5];
 
         var billing_postal = document.getElementsByClassName('billing')[0];
         var billing_address = document.getElementsByClassName('billing')[1];
         if(dom.checked == true){
             delivery_address.value = document.getElementById('temp_address').value;
             delivery_postal.value = document.getElementById('temp_postal').value;
+            delivery_contact.value = document.getElementById('temp_contact').value;
 
             billing_address.value = document.getElementById('temp_address').value;
             billing_postal.value = document.getElementById('temp_postal').value;
         } else {
             delivery_address.value = "";
             delivery_postal.value = "";
+            delivery_contact.value = "";
 
             billing_address.value = "";
             billing_postal.value = "";
+        }
+    }
+
+    function submit_form(){
+        var form = document.getElementById('order_form');
+
+        if(flag1 && flag2 && flag3 && flag4 && flag5 && flag6 && flag7 && flag8 ){
+            form.submit();
+        } else {
+            alert("Please check your input(s)!");
         }
     }
 </script>

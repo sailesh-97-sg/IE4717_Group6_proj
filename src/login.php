@@ -61,6 +61,15 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
             p {
                 margin-left: 100px;
             }
+            #name_table tr td{
+                padding: 10px;
+            }
+            #order_table tr th, #order_table tr td{
+                padding: 10px;
+            }
+            #address_table tr td{
+                padding: 10px;
+            }
         </style>
         <title>Login</title>
     </head>
@@ -92,16 +101,70 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
                             </div>
                             <div id="profile_content">
                                 <?php
+                                    include "dbconnect.php";
                                     if(isset($_REQUEST['profile_radio'])){
                                         $radio_btn = $_REQUEST['profile_radio'];
                                         if($radio_btn == 'account_detail'){
-                                            echo "ACCOUNT DETAIL";
+                                            $query = "select email, contact from users where username = '".$_SESSION['valid_user']."'";
+                                            $result = $dbcnx->query($query);
+                                            $num_rows = $result->num_rows;
+                                            if($num_rows == 0){
+                                                echo "There was an error retrieving data from database!";
+                                                exit;
+                                                $dbcnx->close();
+                                            } else {
+                                                echo "<h2>Account Details</h2>";
+                                                $row = $result->fetch_assoc();
+                                                echo '<table border = "0" id="name_table">';
+                                                echo '<tr><td>Username</td><td>'.$_SESSION['valid_user'].'</td></tr>';
+                                                echo '<tr><td>Email</td><td>'.$row['email'].'</td></tr>';
+                                                echo '<tr><td>Contact Number</td><td>'.$row['contact'].'</td></tr>';
+                                                echo '</table>';
+                                            }
                                         } elseif($radio_btn == 'address_detail'){
-                                            echo "ADDRESS";
+                                            $query = "select address, postal from users where username = '".$_SESSION['valid_user']."'";
+                                            $result = $dbcnx->query($query);
+                                            $num_rows = $result->num_rows;
+                                            if($num_rows == 0){
+                                                echo "There was an error retrieving data from database!";
+                                                $dbcnx->close();
+                                                exit;
+                                            } else {
+                                                echo "<h2>Address Details</h2>";
+                                                $row = $result->fetch_assoc();
+                                                echo '<table border = "0" id="address_table">';
+                                                echo '<tr><td><strong>Address: </strong></td><td>'.$row['address'].'</td></tr>';
+                                                echo '<tr><td><strong>Postal: </strong></td><td>'.$row['postal'].'</td></tr>';
+                                                echo '</table>';
+                                            }
                                         } elseif($radio_btn == 'orders'){
-                                            echo "ORDERS";
+                                            $query = "select orderid, total_qty, total_price, products from orders where username = '".$_SESSION['valid_user']."'";
+                                            $result = $dbcnx->query($query);
+                                            $num_rows = $result->num_rows;
+                                            if($num_rows < 0){
+                                                echo "There was an error retrieving data from database!";
+                                                $dbcnx->close();
+                                                exit;
+                                            } else if($num_rows > 1){
+                                                echo "<h2>Order Details</h2>";
+                                                echo '<table border = "0" id="order_table">';
+                                                echo '<tr><th>Order Ref No</th><th>Types of Products</th><th>Quantity</th><th>Total Price</th></tr>';
+                                                for($i = 0; $i < $num_rows; $i++){
+                                                    $row = $result->fetch_assoc();
+                                                    echo '<tr><td>'.$row['orderid'].'</td><td>'.$row['products'].'</td><td>'.$row['total_qty'].'</td><td>'.$row['total_price'].'</td></tr>';
+                                                }
+                                                echo '</table>';
+                                                //for($i = 0; $i < count($row); $i++){
+                                            } else if($num_rows == 0){
+                                                echo "<h2>Order Details</h2>";
+                                                echo '<table border = "0" id="order_table">';
+                                                echo '<tr><th>Order Ref No</th><th>Types of Products</th><th>Quantity</th><th>Total Price</th></tr>';
+                                                echo '<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>';
+                                                echo '</table>';
+                                            }
                                         }
                                     }
+                                    $dbcnx->close();
                                 ?>
                             </div>
                             <a href = "logout.php">Log Out </a>

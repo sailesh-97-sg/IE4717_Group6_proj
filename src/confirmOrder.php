@@ -46,7 +46,17 @@
     $stmt->execute();
 
     if(!$stmt){
-        echo "An error has occured";
+        echo "An error has occured while updating orders";
+    }
+
+    $query = "update users set contact = '$contact', address = '$deli_address', postal = '$deli_postal' where username = '$username'";
+    $result = $dbcnx->query($query);
+    //$num_rows = $result->num_rows;
+
+    if($dbcnx->errno){
+        echo "Could not update user's table: ".$dbcnx->error;
+        $dbcnx->close();
+        exit;
     }
     $dbcnx->close();
 ?>

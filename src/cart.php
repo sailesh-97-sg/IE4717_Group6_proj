@@ -42,11 +42,11 @@
         }
     }
     // Debug (To be removed later)----------------------------------------------
-    if(isset($_SESSION['cart'])){
+    /*if(isset($_SESSION['cart'])){
         for($a = 0; $a < count($_SESSION['cart']); $a++){
             echo 'Item '.$a+1 .'\'quantity is: '.$_SESSION['cart'][$a][3];
         }
-    }
+    }*/
     //---------------------------------------------------------------------------
 ?>
 <!DOCTYPE html>

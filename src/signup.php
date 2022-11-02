@@ -3,7 +3,7 @@
     if(isset($_SESSION['valid_user'])){
         // to redirect to profile page if user happen to reach here for some reasons
         echo '<script>alert("You are already logged in!");</script>';
-        echo '<script>window.location.replace("/Design_Project/IE4717_Group6_proj/src/login.php");</script>';
+        echo '<script>window.location.replace("login.php");</script>';
     }
     if(isset($_REQUEST['register']))
     {
