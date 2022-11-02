@@ -99,14 +99,14 @@
                                 <?php if(isset($_POST['pricefilter']) and $_POST['pricefilter'] == "hightolow") { echo 'checked="checked"';} ?>>
                             <label for="hightolow">High to Low</label>
                         </div>
-                        <div class="genderfilter">
+                        <!-- <div class="genderfilter">
                             <p><strong>Gender:</strong></p>
                             <input type="radio" name="gender" id="male" value="male" checked>
                             <label for="male">Male</label>
                             <br>
                             <input type="radio" name="gender" id="female" value="female">
                             <label for="female">Female</label>
-                        </div>
+                        </div> -->
                         <div class="clothingtypefilter">
                             <p><strong>Clothing Type:</strong></p>
 

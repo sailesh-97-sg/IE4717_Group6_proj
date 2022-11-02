@@ -1,3 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/order_confirmation.css">
+    <link rel="stylesheet" href="../css/general_style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="confirmation_body">
+        <div id="confirmationtexts">
+            <h2>Order Confirmation</h2>
+            <h4>Thank you for your purchase</h4>
+            <p>Email confirmation will be sent to you shortly</p>
+            <a href="../login_page/login.html">
+                <button>Continue Shopping</button>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
 <?php
     session_start();
 
@@ -58,9 +88,42 @@
         $dbcnx->close();
         exit;
     }
+    $useremail = '';
+    
+    
     $dbcnx->close();
 ?>
-<!-- email code can be put here. 
+
+
+
+<!-- email code can be put here. -->
+<?php 
+$to = 'f32ee@localhost';
+$subject = 'Receipt - FashionStore Purchase of Goods';
+$message = 'Thank you for purchasing from FashionStore!'."\r\n".'Your order has been confirmed and will be ready for delivery shortly.'."\r\n"."Please confirm your order details below: "."\r\n\r\n";
+$count = count($_SESSION['cart']);
+$total_qty = 0;
+$subtotal = 0;
+for($i = 0; $i < $count; $i++){
+    $name = $_SESSION['cart'][$i][0];
+    $price = $_SESSION['cart'][$i][1];
+    $color = $_SESSION['cart'][$i][2];
+    $qty = $_SESSION['cart'][$i][3];
+    $size = $_SESSION['cart'][$i][4];
+    $total_qty = $total_qty + $qty;
+    $subtotal = $subtotal + ($price * $qty);
+    // $message = $message.$name."\r\n"."$".$price."\r\n"."Color: ".$color."\r\n"."Quantity: ".$qty."\r\n"."Size: ".$size;
+    $message = $message.$name." "." x".$qty."\r\n";
+}
+$message = $message."\r\n"."Total Cost: $".$_SESSION['total'];
+$headers = 'From: purchase@fashionstore.com' . "\r\n" .
+'Reply-To: f32ee@localhost' . "\r\n" .
+'X-Mailer: PHP/' . phpversion();
+mail($to, $subject, $message, $headers,
+'-ff32ee@localhost');
+echo ("mail sent to : ".$to);
+?>
+
 <?php
     unset($_SESSION['cart']);
     unset($_SESSION['total_qty']);
