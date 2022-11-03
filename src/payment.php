@@ -40,7 +40,6 @@
         //echo '<script>alert("'.$address.'");</script>';
         //echo '<script>alert("'.$contact.'");</script>';
     }
-
     $dbcnx->close();
 ?>
 <!DOCTYPE html>

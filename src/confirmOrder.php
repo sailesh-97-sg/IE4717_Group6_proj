@@ -1,33 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/order_confirmation.css">
-    <link rel="stylesheet" href="../css/general_style.css">
-    <title>Document</title>
-</head>
-
-<body>
-    <div class="confirmation_body">
-        <div id="confirmationtexts">
-            <h2>Order Confirmation</h2>
-            <h4>Thank you for your purchase</h4>
-            <p>Email confirmation will be sent to you shortly</p>
-            <a href="products.php">
-                <button>Continue Shopping</button>
-            </a>
-
-        </div>
-    </div>
-
-</body>
-
-</html>
-
-
 <?php
     session_start();
 
@@ -38,9 +8,14 @@
     }
 
     if(!isset($_SESSION['cart'])){
-        if(!empty($_SESSION['cart'])){
+        echo '<script>alert("Your cart is empty!");</script>';
+        echo '<script>window.location.replace("products.php");</script>';
+        exit;
+    } else {
+        if(empty($_SESSION['cart'])){
             echo '<script>alert("Your cart is empty!");</script>';
             echo '<script>window.location.replace("products.php");</script>';
+            exit;
         }
     }
 
@@ -105,7 +80,34 @@
     $dbcnx->close();
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/order_confirmation.css">
+    <link rel="stylesheet" href="../css/general_style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="confirmation_body">
+        <div id="confirmationtexts">
+            <h2>Order Confirmation</h2>
+            <h4>Thank you for your purchase</h4>
+            <p>Email confirmation will be sent to you shortly</p>
+            <a href="products.php">
+                <button>Continue Shopping</button>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
 
 <!-- email code can be put here. -->
 <?php 

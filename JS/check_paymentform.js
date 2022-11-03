@@ -1,5 +1,3 @@
-//Card Validation-----------------------------------------------
-//--------------------------------------------------------------
 //Delivery Address Validation-----------------------------------
 var delivery_address = document.getElementsByClassName('delivery');
 delivery_address[0].addEventListener("change", chk_deli_name ,false);

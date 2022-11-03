@@ -81,10 +81,11 @@ function chk_expiry_date(){
 
 function chk_name_onCard(event){
     var dom = event.currentTarget;
-    var pattern = /(\w+ ?){2,4}/;
+    //var pattern = /([a-z]+ ?){2,4}/;
+    var pattern = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g;
     var pos = dom.value.search(pattern);
 
-    if(pos != 0){
+    if(pos == -1){
         dom.setCustomValidity("Name must not include invalid characters.(e.g. digits, $,@,%,&) and have more than one word.");
         dom.reportValidity();
         setTimeout(function(){dom.setCustomValidity("");},2000)
@@ -101,7 +102,8 @@ function chk_name_onCard(event){
 
 function chk_deli_name(event){
     var dom = event.currentTarget;
-    var pattern = /(\w+ ?){1,3}/;
+    //var pattern = /([a-z]+ ?){1,3}/;
+    var pattern = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g;
     var pos = dom.value.search(pattern);
 
     if(pos!= 0){
@@ -142,7 +144,7 @@ function chk_address(event){
     var pattern = /[@!#$%^&*]/g;
     var pos = dom.value.search(pattern);
 
-    if(pos != -1){asdf
+    if(pos != -1){
         dom.setCustomValidity("Address must not include invalid characters. (!@#$%%^&*).");
         dom.reportValidity();
         setTimeout(function(){dom.setCustomValidity("");},2000)
