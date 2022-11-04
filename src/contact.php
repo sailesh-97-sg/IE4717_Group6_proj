@@ -1,5 +1,21 @@
 <?php
 session_start();
+
+
+if((isset($_POST['nameforfb'])and $_POST['nameforfb'] != '') and (isset($_POST['emailforfb'])and $_POST['emailforfb'] != '') and (isset($_POST['subjectforfb'])and $_POST['subjectforfb'] != '')) {
+    $feedbackname = $_POST['nameforfb'];
+    $feedbackemail = $_POST['emailforfb'];
+    $feedbacksubject = $_POST['subjectforfb'];
+    $to = 'f31ee@localhost';
+$subject = 'Feedback from '.$feedbackemail.'';
+$message = $feedbacksubject;
+$headers = 'From: '.$feedbackemail.'' . "\r\n" .
+'Reply-To: f31ee@localhost' . "\r\n" .
+'X-Mailer: PHP/' . phpversion();
+mail($to, $subject, $message, $headers,
+'-'.$feedbackemail.'');
+echo ("<script>document.forms['form_name'].reset();</script>");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +71,7 @@ session_start();
                             </div>
                         </div>
                         <div class="feedbacksubject">
-                            <label for="subjectforfeedback">Subject:</label>
+                            <label for="subjectforfeedback">Message:</label>
                             <input type="text" id="subjectforfeedback" name="subjectforfb">
                         </div>
                     </div>
@@ -87,34 +103,39 @@ session_start();
         </div>
     </div>
 </body>
+
 </html>
 <script>
-    var nameFB = document.getElementById('nameforfeedback');
-    var emailFB = document.getElementById('emailforfeedback');
+var nameFB = document.getElementById('nameforfeedback');
+var emailFB = document.getElementById('emailforfeedback');
 
-    nameFB.addEventListener("change",() => {
-        var pos = nameFB.value.search(/([a-z]+ ?){1,4}/);
-        
-        if(pos != 0){
-            nameFB.setCustomValidity("Name must not include invalid characters and digits");
-            nameFB.reportValidity();
-            setTimeout(function(){nameFB.setCustomValidity("");},2000);
-            nameFB.focus();
-            nameFB.select();
-            return false;
-        }
-    },false);
+nameFB.addEventListener("change", () => {
+    var pos = nameFB.value.search(/([a-z]+ ?){1,4}/);
 
-    emailFB.addEventListener("change",() => {
-        var pos = emailFB.value.search(/^[\w.-]+@([a-z]{2,5}\.){1,3}[a-z]{2,3}$/);
+    if (pos != 0) {
+        nameFB.setCustomValidity("Name must not include invalid characters and digits");
+        nameFB.reportValidity();
+        setTimeout(function() {
+            nameFB.setCustomValidity("");
+        }, 2000);
+        nameFB.focus();
+        nameFB.select();
+        return false;
+    }
+}, false);
 
-        if(pos != 0){
-            emailFB.setCustomValidity("Email format should be emailuser@domain.com");
-            emailFB.reportValidity();
-            setTimeout(function(){emailFB.setCustomValidity("");},2000);
-            emailFB.focus();
-            emailFB.select();
-            return false;
-        }
-    }, false);
+emailFB.addEventListener("change", () => {
+    var pos = emailFB.value.search(/^[\w.-]+@([a-z]{2,5}\.){1,3}[a-z]{2,3}$/);
+
+    if (pos != 0) {
+        emailFB.setCustomValidity("Email format should be emailuser@domain.com");
+        emailFB.reportValidity();
+        setTimeout(function() {
+            emailFB.setCustomValidity("");
+        }, 2000);
+        emailFB.focus();
+        emailFB.select();
+        return false;
+    }
+}, false);
 </script>

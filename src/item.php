@@ -50,7 +50,7 @@ $row = $result->fetch_assoc();
                     <p><?php echo($row['productdescription']);?></p>
                     <div class="productsizes">
                         <p>Sizes: </p>
-                        <input type="radio" name="itemsize" value="small" id="small" required>
+                        <input type="radio" name="itemsize" value="small" id="small" required checked>
                         <label for="small">Small</label>
                         <input type="radio" name="itemsize" value="medium" id="medium">
                         <label for="medium">Medium</label>

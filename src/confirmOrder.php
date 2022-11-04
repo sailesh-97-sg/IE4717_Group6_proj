@@ -126,15 +126,16 @@ for($i = 0; $i < $count; $i++){
     $total_qty = $total_qty + $qty;
     $subtotal = $subtotal + ($price * $qty);
     // $message = $message.$name."\r\n"."$".$price."\r\n"."Color: ".$color."\r\n"."Quantity: ".$qty."\r\n"."Size: ".$size;
-    $message = $message.$name." "." x".$qty."\r\n"."Size: ".$size."\r\n"."Color: ".$color."\r\n";
+    $message = $message.$name." "." x".$qty."\r\n"."Size: ".$size."\r\n"."Color: ".$color."\r\n\r\n";
 }
 $message = $message."\r\n"."Total Cost: $".$_SESSION['total'];
-$headers = 'From: purchase@fashionstore.' . "\r\n" .
+$headers = 'From: purchase@fashionstore' . "\r\n" .
 'Reply-To: '.$useremail.'' . "\r\n" .
 'X-Mailer: PHP/' . phpversion();
 mail($to, $subject, $message, $headers,
 '-'.$useremail.'');
 echo ("mail sent to : ".$to);
+
 ?>
 
 <?php
