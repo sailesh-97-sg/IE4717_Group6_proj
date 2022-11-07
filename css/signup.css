@@ -1,21 +1,26 @@
-body {
-    background-color: white;
-    max-width: max-content;
+
+.body {
     margin: auto;
+    background-color: rgb(195, 195, 195);
+    width: 80%;
+    margin-top: 0px;
+    padding: 2px 20px;
+    border-radius: 20px;
+    align-content: start;
+    min-width: 900px;
+}body {
+    margin: 0px;
 }
-
-img {
-    margin-top: 20px;
+.body img, .body .signup{
+    margin-top: 20px; padding: 0% 40%;
 }
-
-input {
+.signup_input {
     border-radius: 20px;
     width: 300px;
     padding-left: 10px;
     height: 30px;
     border-width: 3px;
     background-color: rgb(243, 243, 243);
-
 }
 
 #signupsubmit {
@@ -23,7 +28,6 @@ input {
     background-color: lightblue;
     margin-left: 50px;
 }
-
 p {
     margin-left: 50px;
 }

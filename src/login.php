@@ -28,49 +28,8 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/general_style.css">
-    <link rel="stylesheet" href="../css/profile_php.css">
-        <style>
-            .body {
-                margin: auto;
-                background-color: rgb(195, 195, 195);
-                width: 80%;
-                margin-top: 0px;
-                padding: 2px 20px;
-                border-radius: 20px; 
-                align-content: start;
-                min-width: 900px;
-            }
-            body {margin: 0px;}
-            .body img, .body .login {margin: auto; padding: 0% 35%;
-            }
-            .form_input {
-                margin-left: 50px;
-                border-radius: 20px;
-                width: 300px;
-                padding-left: 10px;
-                height: 30px;
-                border-width: 3px;
-                background-color: rgb(243, 243, 243);
-            }
-            #loginsubmit {
-                width: 200px;
-                border-radius: 20px;
-                background-color: lightblue;
-                margin-left: 100px;
-            }
-            p {
-                margin-left: 100px;
-            }
-            #name_table tr td{
-                padding: 10px;
-            }
-            #order_table tr th, #order_table tr td{
-                padding: 10px;
-            }
-            #address_table tr td{
-                padding: 10px;
-            }
-        </style>
+        <link rel="stylesheet" href="../css/profile_php.css">
+        <link rel="stylesheet" href="../css/login.css">
         <title>Login</title>
     </head>
     <body>
@@ -145,7 +104,7 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
                                                 echo "There was an error retrieving data from database!";
                                                 $dbcnx->close();
                                                 exit;
-                                            } else if($num_rows > 1){
+                                            } else if($num_rows > 0){
                                                 echo "<h2>Order Details</h2>";
                                                 echo '<table border = "0" id="order_table">';
                                                 echo '<tr><th>Order Ref No</th><th>Types of Products</th><th>Quantity</th><th>Total Price</th></tr>';
@@ -193,7 +152,6 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
                         <input type="submit" id = "loginsubmit" value="Log In">
                     </form>
                     <p>Don't have an account? <a href="signup.php">Sign Up</a></p>
-                    <p>Forgot Password? <a href="">Reset Here</a></p>
                 </div>
                 <?php
                 }

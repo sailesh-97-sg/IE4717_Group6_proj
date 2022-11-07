@@ -1,0 +1,86 @@
+
+body {
+    margin: 0px;
+}
+
+#payment_body {
+    background-color: rgb(195, 195, 195);
+    width: 70%;
+    margin: auto;
+    padding: 20px 20px;
+    border-radius: 20px;
+    min-width: 900px;
+    display: block;
+}
+
+.card {
+    border-radius: 5px;
+}
+
+#payment_table,
+#delivery_table,
+#billing_table {
+    margin: 0px 15%;
+}
+
+#payment_table tr td {
+    font-size: 20px;
+    padding: 15px;
+}
+
+#payment_table tr th {
+    text-align: left;
+    font-size: 25px;
+    padding: 15px;
+    background-color: rgb(94, 38, 38);
+    color: white;
+}
+
+#delivery_table tr th {
+    text-align: left;
+    font-size: 25px;
+    padding: 15px;
+    background-color: rgb(94, 38, 38);
+    color: white;
+}
+
+#delivery_table tr td {
+    font-size: 20px;
+    padding: 15px;
+}
+
+#billing_table tr th {
+    text-align: left;
+    font-size: 25px;
+    padding: 15px;
+    background-color: rgb(94, 38, 38);
+    color: white;
+}
+
+#billing_table tr td {
+    font-size: 20px;
+    padding: 15px;
+}
+
+.delivery {
+    border-radius: 5px;
+}
+
+.billing {
+    border-radius: 5px;
+}
+
+#submit_order {
+    border-radius: 5px;
+    width: 30%;
+    height: auto;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(94, 38, 38);
+    margin: 20px 35%;
+}
+
+input[type=text],
+textarea {
+    font-size: large;
+}

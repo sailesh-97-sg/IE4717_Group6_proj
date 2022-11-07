@@ -38,7 +38,11 @@
                     unset($_SESSION['cart'][$i]);
                 }
             }
-            $_SESSION['cart'] = array_values($_SESSION['cart']);
+            if(count($_SESSION['cart']) > 0){
+                $_SESSION['cart'] = array_values($_SESSION['cart']);
+            } else {
+                unset($_SESSION['cart']);
+            }
         }
     }
     // Debug (To be removed later)----------------------------------------------
