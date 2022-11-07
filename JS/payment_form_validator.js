@@ -1,11 +1,12 @@
-var flag1 = true;
-var flag2 = true;
-var flag3 = true;
-var flag4 = true;
-var flag5 = true;
-var flag6 = true;
-var flag7 = true;
-var flag8 = true;
+var flag1;
+var flag2;
+var flag3;
+var flag4;
+var flag5;
+var flag6;
+var flag7;
+var flag8;
+var flag9;
 
 function chk_card_no(event){
     var dom = event.currentTarget;
@@ -64,7 +65,6 @@ function chk_expiry_date(){
             month.reportValidity();
             setTimeout(function(){month.setCustomValidity("");},2000)
             month.focus();
-            month.select();
             flag3 = false;
             return false;
         }
@@ -73,7 +73,6 @@ function chk_expiry_date(){
         year.reportValidity();
         setTimeout(function(){year.setCustomValidity("");},2000)
         year.focus();
-        year.select();
         flag3 = false;
         return false;
     }
@@ -100,7 +99,7 @@ function chk_name_onCard(event){
     }
 }
 
-function chk_deli_name(event){
+function chk_first_name(event){
     var dom = event.currentTarget;
     //var pattern = /([a-z]+ ?){1,3}/;
     var pattern = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g;
@@ -118,6 +117,28 @@ function chk_deli_name(event){
     } else {
         dom.value = dom.value.toUpperCase();
         flag5 = true;
+        return true;
+    }
+}
+
+function chk_last_name(event){
+    var dom = event.currentTarget;
+    //var pattern = /([a-z]+ ?){1,3}/;
+    var pattern = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g;
+    var pos = dom.value.search(pattern);
+
+    if(pos!= 0){
+        dom.setCustomValidity("Name must not include invalid characters.(e.g. digits, $,@,%,&) and have one or more than one word." + 
+                              "\nFirst letter must be uppercase for every word. e.g. John Smith");
+        dom.reportValidity();
+        setTimeout(function(){dom.setCustomValidity("");},2000)
+        dom.focus();
+        dom.select();
+        flag9 = false;
+        return false;
+    } else {
+        dom.value = dom.value.toUpperCase();
+        flag9 = true;
         return true;
     }
 }
