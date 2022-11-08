@@ -54,7 +54,7 @@
         echo "An error has occured while updating orders";
     }
 
-    $query = "update users set contact = '$contact', address = '$deli_address', postal = '$deli_postal' where username = '$username'";
+    /*$query = "update users set contact = '$contact', address = '$deli_address', postal = '$deli_postal' where username = '$username'";
     $result = $dbcnx->query($query);
     //$num_rows = $result->num_rows;
 
@@ -62,7 +62,7 @@
         echo "Could not update user's table: ".$dbcnx->error;
         $dbcnx->close();
         exit;
-    }
+    }*/
     
     $useremail = "";
     $query = "select email from users where username = '$username'";
@@ -99,7 +99,7 @@
             <h4>Thank you for your purchase</h4>
             <p>Email confirmation will be sent to you shortly</p>
             <a href="products.php">
-                <button>Continue Shopping</button>
+                <button style="cursor: pointer;">Continue Shopping</button>
             </a>
 
         </div>

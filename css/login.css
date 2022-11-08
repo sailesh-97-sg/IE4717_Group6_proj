@@ -1,12 +1,13 @@
 .body {
     margin: auto;
     background-color: rgb(195, 195, 195);
-    width: 80%;
+    width: 70%;
     margin-top: 0px;
     padding: 2px 20px;
     border-radius: 20px; 
     align-content: start;
     min-width: 900px;
+    position: relative;
 }
 body {margin: 0px;}
 .body img, .body .login {margin: auto; padding: 0% 35%;
@@ -31,10 +32,37 @@ p {
 }
 #name_table tr td{
     padding: 10px;
+    font-size: 23px;
 }
-#order_table tr th, #order_table tr td{
+.order_table {
+    width: 80%;
     padding: 10px;
+}
+.order_table tr th, .order_table tr td{
+    text-align: right;
+    padding: 10px;
+    font-size: 23px;
 }
 #address_table tr td{
     padding: 10px;
+    font-size: 23px;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }

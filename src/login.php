@@ -21,6 +21,57 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
         echo '<script>alert("You are logged in as '.$_SESSION['valid_user'].'");</script>';
     }
 }
+if(isset($_REQUEST['new_address'])){
+    if(!empty($_REQUEST['new_address'])){
+        $new_address = $_REQUEST['new_address'];
+        include "dbconnect.php";
+
+        $query = "update users set address = '$new_address' where username = '".$_SESSION['valid_user']."'";
+        $result = $dbcnx->query($query);
+        //$num_rows = $result->num_rows;
+    
+        if($dbcnx->errno){
+            echo "Could not update user's table: ".$dbcnx->error;
+            $dbcnx->close();
+            exit;
+        }
+        $dbcnx->close();
+    }
+}
+if(isset($_REQUEST['new_postal'])){
+    if(!empty($_REQUEST['new_postal'])){
+        $new_postal = $_REQUEST['new_postal'];
+        include "dbconnect.php";
+
+        $query = "update users set postal = '$new_postal' where username = '".$_SESSION['valid_user']."'";
+        $result = $dbcnx->query($query);
+        //$num_rows = $result->num_rows;
+    
+        if($dbcnx->errno){
+            echo "Could not update user's table: ".$dbcnx->error;
+            $dbcnx->close();
+            exit;
+        }
+        $dbcnx->close();
+    }
+}
+if(isset($_REQUEST['new_contact'])){
+    if(!empty($_REQUEST['new_contact'])){
+        $new_contact = $_REQUEST['new_contact'];
+        include "dbconnect.php";
+
+        $query = "update users set contact = '$new_contact' where username = '".$_SESSION['valid_user']."'";
+        $result = $dbcnx->query($query);
+        //$num_rows = $result->num_rows;
+    
+        if($dbcnx->errno){
+            echo "Could not update user's table: ".$dbcnx->error;
+            $dbcnx->close();
+            exit;
+        }
+        $dbcnx->close();
+    }
+}
 ?>
 <html>
     <head>
@@ -30,6 +81,7 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
         <link rel="stylesheet" href="../css/general_style.css">
         <link rel="stylesheet" href="../css/profile_php.css">
         <link rel="stylesheet" href="../css/login.css">
+        <script type="text/javascript" src="../JS/payment_form_validator.js"></script>
         <title>Login</title>
     </head>
     <body>
@@ -45,58 +97,74 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
                     if(!empty($olduser))
                     {?>
                         <div class="profile_body">
-                            <div id="nav_bar"> 
-                                <ul>
-                                    <li><form action="" method="POST" id="acc_detail_form">
-                                        <input type="radio" id="acc_detail" name="profile_radio" value="account_detail" onchange="get_accInfo()" ><label for="acc_detail">Account Details</label>
-                                    </form></li>
-                                    <li><form action="" method="POST" id="address_form">
-                                        <input type="radio" id="address" name="profile_radio" value="address_detail" onchange="get_address()" ><label for="address">Address</label>
-                                    </form></li>
-                                    <li><form action="" method="POST" id="orders_form">
-                                        <input type="radio" id="orders" name="profile_radio" value="orders" onchange="get_orders()" ><label for="orders">Orders</label>
-                                    </form></li>
-                                </ul> 
+                            <div id="edit_profile">
+                                <button class="openbutton" onclick="openForm()"><strong>Edit Profile</strong></button>
                             </div>
-                            <div id="profile_content">
-                                <?php
-                                    include "dbconnect.php";
-                                    if(isset($_REQUEST['profile_radio'])){
-                                        $radio_btn = $_REQUEST['profile_radio'];
-                                        if($radio_btn == 'account_detail'){
-                                            $query = "select email, contact from users where username = '".$_SESSION['valid_user']."'";
-                                            $result = $dbcnx->query($query);
-                                            $num_rows = $result->num_rows;
-                                            if($num_rows == 0){
-                                                echo "There was an error retrieving data from database!";
-                                                exit;
-                                                $dbcnx->close();
-                                            } else {
-                                                echo "<h2>Account Details</h2>";
-                                                $row = $result->fetch_assoc();
-                                                echo '<table border = "0" id="name_table">';
-                                                echo '<tr><td>Username</td><td>'.$_SESSION['valid_user'].'</td></tr>';
-                                                echo '<tr><td>Email</td><td>'.$row['email'].'</td></tr>';
-                                                echo '<tr><td>Contact Number</td><td>'.$row['contact'].'</td></tr>';
-                                                echo '</table>';
-                                            }
-                                        } elseif($radio_btn == 'address_detail'){
-                                            $query = "select address, postal from users where username = '".$_SESSION['valid_user']."'";
-                                            $result = $dbcnx->query($query);
-                                            $num_rows = $result->num_rows;
-                                            if($num_rows == 0){
-                                                echo "There was an error retrieving data from database!";
-                                                $dbcnx->close();
-                                                exit;
-                                            } else {
-                                                echo "<h2>Address Details</h2>";
-                                                $row = $result->fetch_assoc();
-                                                echo '<table border = "0" id="address_table">';
-                                                echo '<tr><td><strong>Address: </strong></td><td>'.$row['address'].'</td></tr>';
-                                                echo '<tr><td><strong>Postal: </strong></td><td>'.$row['postal'].'</td></tr>';
-                                                echo '</table>';
-                                            }
-                                        } elseif($radio_btn == 'orders'){
+                            <div class="form-popup" id="myForm">
+                                <form action="login.php" method="POST" class="form-container">
+                                    <label for="new_address"><b>Address</b></label>
+                                    <textarea placeholder="Enter Address" class="new_profile" name="new_address" rows="2" maxlength="60" wrap="hard"></textarea>
+
+                                    <label for="new_postal"><b>Postal Code</b></label>
+                                    <input type="text" placeholder="Enter Postal Code" class="new_profile" name="new_postal">
+
+                                    <label for="new_contact"><b>Contact Number</b></label>
+                                    <input type="text" placeholder="Enter Contact Number" class="new_profile" name="new_contact">
+
+                                    <button type="submit" class="btn">Submit</button>
+                                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                                </form>
+                            </div>
+                                <?php include "dbconnect.php";?>
+                                <div id="acc_detail">
+                                    <?php
+                                        $query = "select email, contact from users where username = '".$_SESSION['valid_user']."'";
+                                        $result = $dbcnx->query($query);
+                                        $num_rows = $result->num_rows;
+                                        if($num_rows == 0){
+                                            echo "There was an error retrieving data from database!";
+                                            exit;
+                                            $dbcnx->close();
+                                        } else {
+                                            echo "<h1>Account Details</h1>";
+                                            $row = $result->fetch_assoc();
+                                            echo '<table border = "0" id="name_table">';
+                                            echo '<tr><td><strong>Username</strong></td><td>'.$_SESSION['valid_user'].'</td></tr>';
+                                            echo '<tr><td><strong>Email</strong></td><td>'.$row['email'].'</td></tr>';
+                                            echo '<tr><td><strong>Contact Number</strong></td><td>'.$row['contact'].'</td></tr>';
+                                            echo '</table>';
+                                        }
+                                        echo '<br><br>';
+                                    ?>
+                                </div>
+                                <div id="address_detail">
+                                    <?php
+                                        $query = "select address, postal from users where username = '".$_SESSION['valid_user']."'";
+                                        $result = $dbcnx->query($query);
+                                        $num_rows = $result->num_rows;
+                                        if($num_rows == 0){
+                                            echo "There was an error retrieving data from database!";
+                                            $dbcnx->close();
+                                            exit;
+                                        } else {
+                                            echo "<h1>Address Details</h1>";
+                                            $row = $result->fetch_assoc();
+                                            echo '<table border = "0" id="address_table">';
+                                            echo '<tr><td><strong>Address: </strong></td><td>'.$row['address'].'</td></tr>';
+                                            echo '<tr><td><strong>Postal: </strong></td><td>'.$row['postal'].'</td></tr>';
+                                            echo '</table>';
+                                        }
+                                        echo '<br><br>';
+                                    ?>
+                                </div>
+                                <div id="order_detail">
+                                    <h1>Order Details</h1>
+                                    <table border="0" class="order_table">
+                                        <tr><th style="width: 15%;">Order Ref No</th><th style="width: 20%;">Types of Products</th><th style="width: 10%;">Quantity</th><th style="width: 13%;">Total Price</th></tr>
+                                    </table>
+                                    <div style="height: 200px; overflow-x: hidden; overflow-y:auto;">
+                                    <table border="0" class="order_table">
+                                        <?php
                                             $query = "select orderid, total_qty, total_price, products from orders where username = '".$_SESSION['valid_user']."'";
                                             $result = $dbcnx->query($query);
                                             $num_rows = $result->num_rows;
@@ -105,28 +173,25 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
                                                 $dbcnx->close();
                                                 exit;
                                             } else if($num_rows > 0){
-                                                echo "<h2>Order Details</h2>";
-                                                echo '<table border = "0" id="order_table">';
-                                                echo '<tr><th>Order Ref No</th><th>Types of Products</th><th>Quantity</th><th>Total Price</th></tr>';
                                                 for($i = 0; $i < $num_rows; $i++){
                                                     $row = $result->fetch_assoc();
-                                                    echo '<tr><td>'.$row['orderid'].'</td><td>'.$row['products'].'</td><td>'.$row['total_qty'].'</td><td>'.$row['total_price'].'</td></tr>';
+                                                    echo '<tr><td style="width: 15%;">'.$row['orderid'].'</td><td style="width: 20%;">'.$row['products'].'</td><td style="width: 10%;">'.$row['total_qty'].'</td><td style="width: 13%;">'.$row['total_price'].'</td></tr>';
                                                 }
-                                                echo '</table>';
+                                                echo '</table></div>';
                                                 //for($i = 0; $i < count($row); $i++){
                                             } else if($num_rows == 0){
-                                                echo "<h2>Order Details</h2>";
-                                                echo '<table border = "0" id="order_table">';
-                                                echo '<tr><th>Order Ref No</th><th>Types of Products</th><th>Quantity</th><th>Total Price</th></tr>';
-                                                echo '<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>';
-                                                echo '</table>';
+                                                echo '<tr><td style="width: 15%;">-</td><td style="width: 20%;">-</td><td style="width: 10%;">-</td><td style="width: 13%;">-</td></tr>';
+                                                echo '</table></div>';
                                             }
-                                        }
-                                    }
+                                            echo '<br><br>';
+                                        ?>
+                                </div>
+                                <?php
                                     $dbcnx->close();
                                 ?>
+                            <div id="logout">
+                                <button style="border-radius: 10px; font-size: 20px; color:rgb(68,0,102); cursor:pointer;" onclick="window.location.replace('logout.php');"><b>Log Out</b></button>
                             </div>
-                            <a href = "logout.php">Log Out </a>
                         </div>
                     <?php
                     } else {
@@ -135,7 +200,7 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
                 } else {
                     if (isset($username))
                     {
-                        echo '<script>alert("Your username or password is invalid!\nPlease log in again.");</script>';
+                        echo '<script>alert("Your username or password is incorrect!\nPlease log in again.");</script>';
                     } else {
                         //echo '<script>alert("Please Log in");</script>';
                     }
@@ -164,6 +229,8 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
     </body>
 </html>
 <script>
+    var edit_profile = document.getElementsByClassName('new_profile');
+
     function get_accInfo(){
         if(document.getElementById('acc_detail').checked == true){
             document.getElementById('acc_detail_form').submit();
@@ -179,4 +246,16 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
             document.getElementById('orders_form').submit();
         }
     }
+
+    function openForm() {
+    document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+    }
+
+    edit_profile[0].addEventListener("change", chk_address, false);
+    edit_profile[1].addEventListener("change", chk_postal_code, false);
+    edit_profile[2].addEventListener("change", chk_contact_no, false);
 </script>

@@ -195,7 +195,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><input type="submit" value="Proceed to Checkout" name="chkout_btn" id = "checkout" ></td>
+                                <td><button type="submit" name="chkout_btn" id = "checkout" style="cursor:pointer;">Proceed to Checkout</button></td>
                             </tr>
                         </table>
                     </form>

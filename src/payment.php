@@ -136,7 +136,7 @@
                                 <input type="hidden" name="temp_contact" id="temp_contact"
                                     value="<?php echo $contact; ?>">
                                 <!-- -->
-                                <label for="get_address_btn">Use Previous Address Details</label>
+                                <label for="get_address_btn">Use Default Address</label>
                                 <input type="checkbox" name="get_address" class="delivery" id="get_address_btn"
                                     value="Use Previous Address Details" onchange="getAddress(this)">
                             </td>
@@ -173,7 +173,7 @@
                         </tr>
                     </table>
                 </div>
-                <input type="button" value="Submit Order" name="submit_order" id="submit_order" onclick="submit_form()">
+                <button name="submit_order" id="submit_order" style="cursor: pointer;" onclick="submit_form()">Submit Order</button>
             </form>
         </div>
         <div id="footer">

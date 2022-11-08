@@ -183,7 +183,7 @@ function chk_contact_no(event){
     var pos = dom.value.search(pattern);
 
     if(pos != 0){
-        dom.setCustomValidity("Invalid Contact Number");
+        dom.setCustomValidity("Contact Number must be 8-digit combination!");
         dom.reportValidity();
         setTimeout(function(){dom.setCustomValidity("");},2000)
         dom.focus();
