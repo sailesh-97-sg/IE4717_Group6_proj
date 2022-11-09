@@ -10,8 +10,8 @@ var flag9;
 
 function chk_card_no(event){
     var dom = event.currentTarget;
-    var pos = dom.value.search(/(\d{4})[ -]?(\d{4})[ -]?(\d{4})[ -]?(\d{4})/g);
-
+    var pos = dom.value.search(/(^\d{4})[ -]?(\d{4})[ -]?(\d{4})[ -]?(\d{4}$)/g);
+    //alert("regex is" + pos);
     if(pos != 0){
         //alert("Card Number must be 16 digit numbers between 0-9.");
         dom.setCustomValidity("Card Number must be 16 digit numbers between 0-9.");

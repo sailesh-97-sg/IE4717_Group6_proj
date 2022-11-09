@@ -19,6 +19,12 @@
         }
     }
 
+    if(!isset($_REQUEST['submit_order'])){
+        echo '<script>alert("Please fill in payment details!");</script>';
+        echo '<script>window.location.replace("cart.php");</script>';
+        exit;
+    }
+
     // setting variables
     $username = $_SESSION['valid_user'];
     //$isBillingSame = $_REQUEST['set_billing_add'];
