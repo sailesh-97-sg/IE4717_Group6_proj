@@ -90,3 +90,15 @@ body {margin: 0px;}
   margin-bottom:10px;
   opacity: 0.8;
 }
+
+.btn_cancel{
+    background-color: #35384f;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+}
+

@@ -73,7 +73,7 @@
                                 Delivery
                             </td>
                             <td colspan="2">Card Number<br><input type="text" class="card" name="card_no" id="card_no"
-                                    placeholder="1111222233334444" maxlength="16" style="width: 90%;"></td>
+                                    placeholder="1111-2222-3333-4444" style="width: 90%;"></td>
                         </tr>
                         <tr>
                             <td id="expiry_date">Expiry Date <br>
@@ -121,14 +121,14 @@
                             <th colspan="2">Delivery Address</th>
                         </tr>
                         <tr>
-                            <td>First Name<br><input type="text" placeholder="John" class="delivery" name="first_name">
+                            <td>First Name<br><input type="text" placeholder="John" class="delivery" name="first_name" required>
                             </td>
-                            <td>Last Name<br><input type="text" placeholder="Smith" class="delivery" name="last_name">
+                            <td>Last Name<br><input type="text" placeholder="Smith" class="delivery" name="last_name" required>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">Postal Code<br><input type="text" placeholder="123456" maxlength="6"
-                                    name="delivery_postal_code" class="delivery">&nbsp;&nbsp;&nbsp;
+                                    name="delivery_postal_code" class="delivery" required>&nbsp;&nbsp;&nbsp;
                                 <!-- These hidden inputs are not to be used. They are to store values from php variables for JS use. -->
                                 <input type="hidden" name="temp_postal" id="temp_postal" value="<?php echo $postal; ?>">
                                 <input type="hidden" name="temp_address" id="temp_address"
@@ -149,8 +149,8 @@
                         </tr>
                         <tr>
                             <td colspan="2">Contact Number<br>
-                                +65 <input type="text" class="delivery" name="contact" placeholder="12345678"
-                                    maxlength="8" id="contact"><br><br>
+                                <input type="text" class="delivery" name="contact" placeholder="(+)(65)12345678"
+                                     id="contact" required><br><br>
                                 <input type="checkbox" name="set_billing_add" id="set_billing_add" value="checked"
                                     checked onchange="isBillingAddSame(this)"> Use Delivery Address as Billing Address
                             </td>
@@ -163,7 +163,7 @@
                             <th colspan="2">Billing Address</th>
                         </tr>
                         <tr>
-                            <td colspan="2">Postal Code<br><input type="text" placeholder="123456" name="billing_postal"
+                            <td colspan="2">Postal Code<br><input type="text" placeholder="123456" name="billing_postal" maxlength="6"
                                     id="billing_postalID" class="billing" disabled></td>
                         </tr>
                         <tr>
@@ -173,7 +173,7 @@
                         </tr>
                     </table>
                 </div>
-                <button name="submit_order" id="submit_order" style="cursor: pointer;" onclick="submit_form()">Submit Order</button>
+                <input type="button" value="Submit Order" name="submit_order" id="submit_order" style="cursor: pointer;" onclick="submit_form()">
             </form>
         </div>
         <div id="footer">

@@ -81,7 +81,6 @@ if(isset($_REQUEST['new_contact'])){
         <link rel="stylesheet" href="../css/general_style.css">
         <link rel="stylesheet" href="../css/profile_php.css">
         <link rel="stylesheet" href="../css/login.css">
-        <script type="text/javascript" src="../JS/payment_form_validator.js"></script>
         <title>Login</title>
     </head>
     <body>
@@ -101,18 +100,18 @@ if(isset($_REQUEST['new_contact'])){
                                 <button class="openbutton" onclick="openForm()"><strong>Edit Profile</strong></button>
                             </div>
                             <div class="form-popup" id="myForm">
-                                <form action="login.php" method="POST" class="form-container">
+                                <form action="login.php" method="POST" class="form-container" id="profile_update">
                                     <label for="new_address"><b>Address</b></label>
                                     <textarea placeholder="Enter Address" class="new_profile" name="new_address" rows="2" maxlength="60" wrap="hard"></textarea>
 
                                     <label for="new_postal"><b>Postal Code</b></label>
-                                    <input type="text" placeholder="Enter Postal Code" class="new_profile" name="new_postal">
+                                    <input type="text" placeholder="123456" class="new_profile" name="new_postal" maxlength="6">
 
                                     <label for="new_contact"><b>Contact Number</b></label>
-                                    <input type="text" placeholder="Enter Contact Number" class="new_profile" name="new_contact">
+                                    <input type="text" placeholder="(+)(65)12345678" class="new_profile" name="new_contact">
 
-                                    <button type="submit" class="btn">Submit</button>
-                                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                                    <input type="button" class="btn" value="Submit" onclick="update_profile()">
+                                    <button type="button" class="btn_cancel" onclick="closeForm()">Close</button>
                                 </form>
                             </div>
                                 <?php include "dbconnect.php";?>
@@ -230,6 +229,9 @@ if(isset($_REQUEST['new_contact'])){
 </html>
 <script>
     var edit_profile = document.getElementsByClassName('new_profile');
+    var add_flag = false;
+    var postal_flag = false;
+    var contact_flag = false;
 
     function get_accInfo(){
         if(document.getElementById('acc_detail').checked == true){
@@ -255,7 +257,65 @@ if(isset($_REQUEST['new_contact'])){
     document.getElementById("myForm").style.display = "none";
     }
 
-    edit_profile[0].addEventListener("change", chk_address, false);
-    edit_profile[1].addEventListener("change", chk_postal_code, false);
-    edit_profile[2].addEventListener("change", chk_contact_no, false);
+    edit_profile[0].addEventListener("change", () => {
+        var pattern = /[@!$%^&*]+/g;
+        var pos = edit_profile[0].value.search(pattern);
+
+        if(pos != -1){
+            edit_profile[0].setCustomValidity("Address must not include invalid characters. (!@$%^&*).");
+            edit_profile[0].reportValidity();
+            setTimeout(function(){edit_profile[0].setCustomValidity("");},2000)
+            edit_profile[0].focus();
+            edit_profile[0].select();
+            add_flag = false;
+            return false;
+        }
+        add_flag = true;
+        return true;
+    }, false);
+    edit_profile[1].addEventListener("change", () => {
+        var pattern = /\d{6}/;
+        var pos = edit_profile[1].value.search(pattern);
+
+        if(pos!=0){
+            edit_profile[1].setCustomValidity("Invalid Postal Code. Singapore Postal code is 6-digit number.");
+            edit_profile[1].reportValidity();
+            setTimeout(function(){edit_profile[1].setCustomValidity("");},2000)
+            edit_profile[1].focus();
+            edit_profile[1].select();
+            postal_flag = false;
+            return false;
+        }
+        postal_flag = true;
+        return true;
+    }, false);
+    edit_profile[2].addEventListener("change", () => {
+        var pattern = /^[\+]?([0-9]{1,3})?[0-9]{8}$/g;
+        var pos = edit_profile[2].value.search(pattern);
+
+        if(pos != 0){
+            edit_profile[2].setCustomValidity("Contact Number must be 8-digit combination with or without country code e.g (+65)12345678");
+            edit_profile[2].reportValidity();
+            setTimeout(function(){edit_profile[2].setCustomValidity("");},3000)
+            edit_profile[2].focus();
+            edit_profile[2].select();
+            contact_flag = false;
+            return false;
+        }
+        contact_flag = true;
+        return true;
+    }, false);
+
+    function update_profile(){
+        if(!add_flag){
+            edit_profile[0].value = "";
+        }
+        if(!postal_flag){
+            edit_profile[1].value = "";
+        }
+        if(!contact_flag){
+            edit_profile[2].value = "";
+        }
+        document.getElementById("profile_update").submit();
+    }
 </script>

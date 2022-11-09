@@ -123,9 +123,9 @@
         var pattern = /^(?=.{8,20}$)(?=.*[0-9]+)(?=.*[!@#$%^&*]+)(?=.*[A-Z]+)(?=.*[a-z]+)[a-zA-Z0-9!@#$%^&*]+$/g;
         var pos = password.value.search(pattern);
         if(pos < 0){
-            password.setCustomValidity("Password must have atleast 1 capital letter, 1 small letter, 1 number and 1 special character");
+            password.setCustomValidity("Password must be between 8 to 20 characters with atleast 1 capital letter, 1 small letter, 1 number and 1 special character");
             password.reportValidity();
-            setTimeout(function(){password.setCustomValidity("");},2000);
+            setTimeout(function(){password.setCustomValidity("");},3000);
             password.focus();
             password.select();
             pwd_flag = false;

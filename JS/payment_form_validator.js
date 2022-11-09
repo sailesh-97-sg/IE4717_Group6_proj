@@ -10,7 +10,7 @@ var flag9;
 
 function chk_card_no(event){
     var dom = event.currentTarget;
-    var pos = dom.value.search(/\d{16}/);
+    var pos = dom.value.search(/(\d{4})[ -]?(\d{4})[ -]?(\d{4})[ -]?(\d{4})/g);
 
     if(pos != 0){
         //alert("Card Number must be 16 digit numbers between 0-9.");
@@ -27,7 +27,7 @@ function chk_card_no(event){
 
 function chk_security_code(event){
     var dom = event.currentTarget;
-    var pos = dom.value.search(/\d{3}/);
+    var pos = dom.value.search(/\d{3}/g);
     if(pos != 0){
         dom.setCustomValidity("Security code must be 3 digit numbers between 0-9");
         dom.reportValidity();
@@ -106,8 +106,7 @@ function chk_first_name(event){
     var pos = dom.value.search(pattern);
 
     if(pos!= 0){
-        dom.setCustomValidity("Name must not include invalid characters.(e.g. digits, $,@,%,&) and have one or more than one word." + 
-                              "\nFirst letter must be uppercase for every word. e.g. John Smith");
+        dom.setCustomValidity("Name must not include invalid characters.(e.g. digits, $,@,%,&) and have one or more than one word.");
         dom.reportValidity();
         setTimeout(function(){dom.setCustomValidity("");},2000)
         dom.focus();
@@ -128,8 +127,7 @@ function chk_last_name(event){
     var pos = dom.value.search(pattern);
 
     if(pos!= 0){
-        dom.setCustomValidity("Name must not include invalid characters.(e.g. digits, $,@,%,&) and have one or more than one word." + 
-                              "\nFirst letter must be uppercase for every word. e.g. John Smith");
+        dom.setCustomValidity("Name must not include invalid characters.(e.g. digits, $,@,%,&) and have one or more than one word.");
         dom.reportValidity();
         setTimeout(function(){dom.setCustomValidity("");},2000)
         dom.focus();
@@ -179,13 +177,13 @@ function chk_address(event){
 
 function chk_contact_no(event){
     var dom = event.currentTarget;
-    var pattern = /\d{8}/;
+    var pattern = /^[\+]?([0-9]{1,3})?[0-9]{8}$/g;
     var pos = dom.value.search(pattern);
 
     if(pos != 0){
-        dom.setCustomValidity("Contact Number must be 8-digit combination!");
+        dom.setCustomValidity("Contact Number must be 8-digit combination with or without country code e.g (+)(65)12345678");
         dom.reportValidity();
-        setTimeout(function(){dom.setCustomValidity("");},2000)
+        setTimeout(function(){dom.setCustomValidity("");},3000)
         dom.focus();
         dom.select();
         flag8 = false;
