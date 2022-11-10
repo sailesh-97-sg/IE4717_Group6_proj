@@ -28,10 +28,23 @@
     //     $_SESSION['cart'][] = array();
     // }
     
-    
+    $qty_update = false;
     // $_SESSION['cart'][] = [$itemproductname, $itemproductcolor, $itemproductprice, $itemproductqty]; Can use either this line or the one right below this to add to cart. Both of them work.
     if (isset($itemproductcolor) and isset($itemproductname) and isset($itemproductprice) and isset($itemproductqty) and isset($itemproductsize)) {
-        array_push($_SESSION['cart'], [$itemproductname, $itemproductprice, $itemproductcolor, $itemproductqty, $itemproductsize]);   
+        if(!empty($_SESSION['cart'])){
+            for($i = 0; $i < count($_SESSION['cart']); $i++){
+                if(($_SESSION['cart'][$i][0] == $itemproductname) && ($_SESSION['cart'][$i][2] == $itemproductcolor) && ($_SESSION['cart'][$i][4] == $itemproductsize)){
+                    $_SESSION['cart'][$i][3] = $_SESSION['cart'][$i][3] + $itemproductqty;
+                    $qty_update = true;
+                    break;
+                }
+            }
+            if(!$qty_update){
+                array_push($_SESSION['cart'], [$itemproductname, $itemproductprice, $itemproductcolor, $itemproductqty, $itemproductsize]);  
+            }
+        } else {
+            array_push($_SESSION['cart'], [$itemproductname, $itemproductprice, $itemproductcolor, $itemproductqty, $itemproductsize]);  
+        } 
     }
 
     // $b=array("itemproductname"=>"$itemproductname","itemproductqty"=>$itemproductqty);

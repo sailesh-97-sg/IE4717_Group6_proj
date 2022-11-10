@@ -67,11 +67,11 @@
     <body>
         <div id="wrapper">
             <?php include "header.php"?>
-            <div id="cart_body">
+            <div id="cart_body" style="height: 100%;">
                 <div id = "left_column">
                     <div id = "item_list">
                         <header style="padding: 0px 20px; background-color: rgb(42, 87, 154);"><h2>Your Cart</h2></header>
-                        <div style="height: 300px; overflow-x: hidden; overflow-y: auto;">
+                        <div style="height: 400px; overflow-x: hidden; overflow-y: auto;">
                         <?php
                             if(!isset($_SESSION['cart'])){
                                 ?>
@@ -99,7 +99,7 @@
                                         $total_qty = $total_qty + $qty;
                                         $subtotal = $subtotal + ($price * $qty);
                                         echo '<tr>';
-                                        echo '<td>'.$name.'   Size: '.$size.'   Color: '.$color.'</td>';
+                                        echo '<td style = "text-transform:uppercase;">'.$name.'&nbsp;&nbsp;&nbsp;&nbsp;Size: '.$size.'&nbsp;&nbsp;&nbsp;&nbsp;Color: '.$color.'</td>';
                                         echo '<td rowspan = "2" style="width:100px;"><span class = "item_total_price"><input type="text" id="'.$i.'_price" value="'.$price*$qty.'" disabled></span></td>';
                                         //echo '<td rowspan = "2"><span id = "'.$name.'_price">$'.$qty * $price.'</span></td>';
                                         echo '</tr>';

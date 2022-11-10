@@ -92,6 +92,7 @@ $row = $result->fetch_assoc();
         <?php 
             echo "<input type=\"hidden\" name=\"itemname\" value=\"".$row['productname']."\">";
             echo "<input type=\"hidden\" name=\"itemprice\" value=\"".$row['productprice']."\">";
+            $dbcnx->close();
             ?>
     </form>
     <div id="footer">
